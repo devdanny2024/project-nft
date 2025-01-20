@@ -1,20 +1,25 @@
-import Hero from "@/components/hero";
-import ConnectSupabaseSteps from "@/components/tutorial/connect-supabase-steps";
-import SignUpUserSteps from "@/components/tutorial/sign-up-user-steps";
-import { hasEnvVars } from "@/utils/supabase/check-env-vars";
-import Drops from "./components/Drops";
-import Recommend from "./components/Recommend";
-import Collection from "./components/Collection";
-import Footer from "./components/Footer";
+import { Categories } from "./components/sections/Categories";
+import { Collections } from "./components/sections/Collections";
+import { Drops } from "./components/sections/Drops";
+import { Footer } from "./components/sections/Footer";
+import { Hero } from "./components/sections/Hero";
+import { NFTLoan } from "./components/sections/NFTLoan";
+import { TrendingCollections } from "./components/sections/TrendingCollections";
+import { TopCollectorBuys } from "./components/sections/TopCollectorBuys";
+import { Recommend } from "./components/sections/Recommend";
 
-export default async function Home() {
+export default function Home() {
   return (
-    <div className="w-full h-full flex flex-col">
+    <main>
       <Hero />
       <Drops />
       <Recommend />
-      <Collection />
+      <Collections />
+      <Categories />
+      <TopCollectorBuys />
+      <TrendingCollections />
+      <NFTLoan />
       <Footer />
-    </div>
+    </main>
   );
 }
