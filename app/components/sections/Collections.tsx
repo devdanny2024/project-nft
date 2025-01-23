@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { useState } from "react";
+import { Icons } from "../icons";
 
 type Platform = "Top" | "Opensea" | "Blur" | "LooksRare";
 
@@ -12,7 +13,7 @@ const collections = [
     id: 1,
     rank: 1,
     name: "Bored Ape Yacht Club",
-    image: "/collections/bayc.png",
+    image: "/collections/c1.jpg",
     floorPrice: "29.15",
     change: "-0.1%",
     isPositive: false,
@@ -26,7 +27,7 @@ const collections = [
     id: 2,
     rank: 2,
     name: "Openpen Edition",
-    image: "/collections/openpen.png",
+    image: "/collections/c2.jpg",
     floorPrice: "0.5444",
     change: "+6.1%",
     isPositive: true,
@@ -40,7 +41,7 @@ const collections = [
     id: 3,
     rank: 5,
     name: "Azuki",
-    image: "/collections/azuki.png",
+    image: "/collections/c3.jpg",
     floorPrice: "4.2488",
     change: "0.0%",
     isPositive: true,
@@ -54,7 +55,7 @@ const collections = [
     id: 4,
     rank: 3,
     name: "Pudgy Penguins",
-    image: "/collections/pudgy.png",
+    image: "/collections/c4.jpg",
     floorPrice: "5.416",
     change: "-1.6%",
     isPositive: false,
@@ -68,7 +69,7 @@ const collections = [
     id: 5,
     rank: 4,
     name: "Mutant Ape Yacht Club",
-    image: "/collections/mayc.png",
+    image: "/collections/c5.jpg",
     floorPrice: "29.15",
     change: "-0.1%",
     isPositive: false,
@@ -82,7 +83,7 @@ const collections = [
     id: 6,
     rank: 6,
     name: "Art Blocks",
-    image: "/collections/artblocks.png",
+    image: "/collections/c6.jpg",
     floorPrice: "0.5444",
     change: "+6.1%",
     isPositive: true,
@@ -96,7 +97,7 @@ const collections = [
     id: 7,
     rank: 7,
     name: "Nouns",
-    image: "/collections/nouns.png",
+    image: "/collections/c7.jpg",
     floorPrice: "4.2488",
     change: "0.0%",
     isPositive: true,
@@ -189,9 +190,7 @@ export function Collections() {
                       </div>
                       <div className="flex items-center gap-2">
                         <span className="font-medium">{collection.name}</span>
-                        <Badge className="bg-blue-500/10 text-blue-400">
-                          ✧
-                        </Badge>
+                        <Icons.verify className="w-4 h-4 text-white" />
                       </div>
                     </div>
                   </td>
