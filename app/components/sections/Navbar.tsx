@@ -114,7 +114,7 @@ export function Navbar() {
               size="icon"
               onClick={() => setIsWalletModalOpen(true)}
               className={cn(
-                "relative transition-colors before:absolute before:inset-0 before:-z-10 before:rounded-full before:p-[1px] before:bg-gradient-to-r before:from-[#00E0B9] before:via-purple-500 before:to-pink-500",
+                "relative transition-colors before:absolute before:inset-0 before:-z-10 before:rounded-full before:p-[1px] before:bg-gradient-to-bl before:from-[#614BC3] before:via-[#C8FFE0] before:to-[#33BBC5]",
                 scrolled
                   ? "text-foreground hover:text-[#00E0B9]"
                   : "text-white hover:text-[#00E0B9]"
