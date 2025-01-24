@@ -1,56 +1,33 @@
 "use client";
 
-import * as React from "react";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
+import { usePathname } from "next/navigation";
+import { useScroll } from "@/app/hooks/use-scroll";
 import { cn } from "@/lib/utils";
-import { useScroll } from "../hooks/use-scroll";
 
 export function ThemeToggle() {
-  const [mounted, setMounted] = React.useState(false);
-  const { theme, setTheme } = useTheme();
+  const { setTheme, theme } = useTheme();
+  const pathname = usePathname();
   const scrolled = useScroll(10);
-
-  // useEffect only runs on the client, so now we can safely show the UI
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return (
-      <Button
-        variant="ghost"
-        size="icon"
-        className={cn(
-          "transition-colors",
-          scrolled
-            ? "text-foreground hover:text-[#00E0B9]"
-            : "text-white hover:text-[#00E0B9]"
-        )}
-      >
-        <Moon className="h-5 w-5" />
-      </Button>
-    );
-  }
+  const isLandingPage = pathname === "/";
 
   return (
     <Button
       variant="ghost"
       size="icon"
+      onClick={() => setTheme(theme === "light" ? "dark" : "light")}
       className={cn(
         "transition-colors",
-        scrolled
-          ? "text-foreground hover:text-[#00E0B9]"
-          : "text-white hover:text-[#00E0B9]"
+        scrolled || !isLandingPage
+          ? "text-foreground hover:bg-transparent"
+          : "text-white hover:bg-transparent"
       )}
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
     >
-      {theme === "dark" ? (
-        <Sun className="h-5 w-5" />
-      ) : (
-        <Moon className="h-5 w-5" />
-      )}
+      <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+      <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+      <span className="sr-only">Toggle theme</span>
     </Button>
   );
 }

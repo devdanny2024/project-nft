@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -48,7 +50,9 @@ export function Drops() {
                         Minting now
                         <span className="ml-2 h-2 w-2 rounded-full bg-green-500"></span>
                       </Button>
-                      <Button className="bg-primary" size={'lg'}>View drop</Button>
+                      <Button className="bg-primary" size={"lg"}>
+                        View drop
+                      </Button>
                     </div>
                   </div>
                 </div>

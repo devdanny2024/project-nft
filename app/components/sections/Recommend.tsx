@@ -38,6 +38,16 @@ const recommendedNFTs = [
     profileImage: "/recommend/profile-3.jpg",
     lastSale: "3.8 ETH",
   },
+  {
+    id: 4,
+    title: "Bored Ape Yacht Club",
+    description:
+      "The Bored Ape Yacht Club is a collection of 10,000 unique Bored Ape NFTs— unique digital collectibles living on the Ethereum blockchain ...",
+    backgroundImage: "/recommend/recommend-4.jpg",
+    nftImage: "/recommend/nft-4.jpg",
+    profileImage: "/recommend/profile-4.jpg",
+    lastSale: "3.8 ETH",
+  },
 ];
 
 export function Recommend() {
