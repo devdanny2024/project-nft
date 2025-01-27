@@ -69,7 +69,7 @@ export function NFTLoan() {
         </div>
 
         {/* NFT Background Image */}
-        <div className="relative w-full aspect-[2/1] rounded-2xl overflow-hidden">
+        {/* <div className="relative w-full aspect-[2/1] rounded-2xl overflow-hidden">
           <Image
             src="/loan/imgbg.jpg"
             alt="NFT Collection Background"
@@ -77,7 +77,7 @@ export function NFTLoan() {
             className="object-cover"
             priority
           />
-        </div>
+        </div> */}
       </div>
     </section>
   );

@@ -32,40 +32,17 @@ const categories = [
   },
   {
     id: 5,
-    name: "Sports",
-    image: "/categories/sports.jpg",
+    name: "Membership",
+    image: "/categories/membership.jpg",
     description: "Sports memorabilia and collectibles",
   },
   {
     id: 6,
-    name: "Virtual Worlds",
-    image: "/categories/virtual-worlds.jpg",
+    name: "PFPs",
+    image: "/categories/pfp.jpg",
     description: "Virtual reality and metaverse assets",
   },
-  {
-    id: 7,
-    name: "Trading Cards",
-    image: "/categories/trading-cards.jpg",
-    description: "Digital trading cards and collectibles",
-  },
-  {
-    id: 8,
-    name: "Domain Names",
-    image: "/categories/domains.jpg",
-    description: "Digital real estate and domain names",
-  },
-  {
-    id: 9,
-    name: "Memes",
-    image: "/categories/memes.jpg",
-    description: "Internet culture and meme collectibles",
-  },
-  {
-    id: 10,
-    name: "Fashion",
-    image: "/categories/fashion.jpg",
-    description: "Digital fashion and wearables",
-  },
+  
 ];
 
 export function Categories() {

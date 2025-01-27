@@ -2,13 +2,14 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Menu, Search, ShoppingCart, WalletMinimal } from "lucide-react";
+import { Menu, Search, WalletMinimal } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "../theme-toggle";
 import { useScroll } from "../../hooks/use-scroll";
 import { useState } from "react";
 import { WalletModal } from "../wallet-modal";
 import { usePathname } from "next/navigation";
+import { Cart } from "../cart";
 
 export function Navbar() {
   const scrolled = useScroll(10);
@@ -99,8 +100,16 @@ export function Navbar() {
                   : "text-white hover:bg-transparent"
               )}
             >
-              <Search className="h-5 w-5" />
+              <Menu className="h-5 w-5" />
             </Button>
+            <Cart
+              className={cn(
+                "transition-colors",
+                scrolled || !isLandingPage
+                  ? "text-foreground hover:bg-transparent"
+                  : "text-white hover:bg-transparent"
+              )}
+            />
             <Button
               variant="ghost"
               size="icon"
@@ -110,39 +119,23 @@ export function Navbar() {
                   ? "text-foreground hover:bg-transparent"
                   : "text-white hover:bg-transparent"
               )}
-            >
-              <ShoppingCart className="h-5 w-5" />
-            </Button>
-            <ThemeToggle />
-            <Button
-              variant="ghost"
-              size="icon"
               onClick={() => setIsWalletModalOpen(true)}
+            >
+              <WalletMinimal className="h-5 w-5" />
+            </Button>
+            <ThemeToggle
               className={cn(
-                "relative transition-colors before:absolute before:inset-0 before:-z-10 before:rounded-full before:p-[1px] before:bg-gradient-to-bl before:from-[#614BC3] before:via-[#C8FFE0] before:to-[#33BBC5]",
                 scrolled || !isLandingPage
                   ? "text-foreground hover:bg-transparent"
                   : "text-white hover:bg-transparent"
               )}
-            >
-              <div
-                className={cn(
-                  "rounded-full p-2",
-                  scrolled || !isLandingPage
-                    ? "bg-background dark:bg-[#0D0D0D]"
-                    : "bg-white/10 dark:bg-[#0D0D0D]/50"
-                )}
-              >
-                <WalletMinimal className="h-5 w-5 text-[#000] dark:text-white" />
-              </div>
-            </Button>
+            />
           </div>
         </div>
       </nav>
-
       <WalletModal
-        isOpen={isWalletModalOpen}
-        onClose={() => setIsWalletModalOpen(false)}
+        open={isWalletModalOpen}
+        onOpenChange={setIsWalletModalOpen}
       />
     </>
   );

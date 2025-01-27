@@ -5,50 +5,38 @@ import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useRef } from "react";
+import { Icons } from "../icons";
 
 const topBuys = [
   {
     id: 1,
     name: "Openpen Edition",
-    image: "/collections/openpen.jpg",
+    image: "/TopCollector/openpen.jpg",
     price: "0.03 ETH",
     isVerified: true,
   },
   {
     id: 2,
     name: "Nakamigos",
-    image: "/collections/nakamigos.jpg",
+    image: "/TopCollector/nakamigos.jpg",
     price: "0.03 ETH",
     isVerified: true,
   },
   {
     id: 3,
     name: "Rug Radio",
-    image: "/collections/rugradio.jpg",
+    image: "/TopCollector/rugradio.jpg",
     price: "0.03 ETH",
     isVerified: true,
   },
   {
     id: 4,
     name: "Dorkz",
-    image: "/collections/dorkz.jpg",
+    image: "/TopCollector/dorkz.jpg",
     price: "0.03 ETH",
     isVerified: true,
   },
-  {
-    id: 5,
-    name: "CryptoPunks",
-    image: "/collections/cryptopunks.jpg",
-    price: "0.03 ETH",
-    isVerified: true,
-  },
-  {
-    id: 6,
-    name: "Moonbirds",
-    image: "/collections/moonbirds.jpg",
-    price: "0.03 ETH",
-    isVerified: true,
-  },
+ 
 ];
 
 export function TopCollectorBuys() {
@@ -117,7 +105,7 @@ export function TopCollectorBuys() {
                 <div className="p-4">
                   <div className="flex items-center gap-2">
                     <h3 className="text-lg font-semibold">{item.name}</h3>
-                    <Badge className="bg-blue-500/10 text-blue-400">✧</Badge>
+                    <Icons.verify className="w-5 h-5" />
                   </div>
                   <p className="text-lg font-medium mt-1">{item.price}</p>
                 </div>

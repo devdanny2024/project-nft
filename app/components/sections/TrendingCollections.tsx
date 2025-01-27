@@ -5,47 +5,34 @@ import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useRef } from "react";
+import { Icons } from "../icons";
 
 const trendingCollections = [
   {
     id: 1,
     name: "DeGods",
-    image: "/collections/degods.jpg",
+    image: "/collections/dairy.jpg",
     price: "0.03 ETH",
     isVerified: true,
   },
   {
     id: 2,
     name: "Pudgy Penguins",
-    image: "/collections/pudgy.jpg",
+    image: "/collections/quirkies.jpg",
     price: "0.03 ETH",
     isVerified: true,
   },
   {
     id: 3,
     name: "Azuki",
-    image: "/collections/azuki.jpg",
+    image: "/collections/ekos.jpg",
     price: "0.03 ETH",
     isVerified: true,
   },
   {
     id: 4,
     name: "Clone X",
-    image: "/collections/clonex.jpg",
-    price: "0.03 ETH",
-    isVerified: true,
-  },
-  {
-    id: 5,
-    name: "Milady",
-    image: "/collections/milady.jpg",
-    price: "0.03 ETH",
-    isVerified: true,
-  },
-  {
-    id: 6,
-    name: "Potatoz",
-    image: "/collections/potatoz.jpg",
+    image: "/collections/ztx.jpg",
     price: "0.03 ETH",
     isVerified: true,
   },
@@ -117,7 +104,7 @@ export function TrendingCollections() {
                 <div className="p-4">
                   <div className="flex items-center gap-2">
                     <h3 className="text-lg font-semibold">{item.name}</h3>
-                    <Badge className="bg-blue-500/10 text-blue-400">✧</Badge>
+                    <Icons.verify className="w-5 h-5" />
                   </div>
                   <p className="text-lg font-medium mt-1">{item.price}</p>
                 </div>

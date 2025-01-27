@@ -1,4 +1,6 @@
-import { LucideProps } from "lucide-react";
+"use client";
+
+import { LucideProps, MessageSquare, Grid, List } from "lucide-react";
 
 export const Icons = {
   verify: (props: LucideProps) => (
@@ -8,6 +10,7 @@ export const Icons = {
       viewBox="0 0 20 20"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      {...props}
     >
       <path
         fillRule="evenodd"
@@ -17,4 +20,6 @@ export const Icons = {
       />
     </svg>
   ),
-};
+  grid: Grid,
+  list: List,
+} as const;
