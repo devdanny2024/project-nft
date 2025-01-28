@@ -53,11 +53,11 @@ const chartConfig = {
 
 export function CollectionVolumeChart() {
   return (
-    <Card className="">
+    <Card className="border-none shadow-none">
       <CardHeader>
-        <CardTitle>#en090</CardTitle>
+        <CardTitle>Price</CardTitle>
         <CardDescription>
-          Showing total visitors for the last 6 months
+          Showing price for the last 6 months
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -98,7 +98,7 @@ export function CollectionVolumeChart() {
           </AreaChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter>
+      {/* <CardFooter>
         <div className="flex w-full items-start gap-2 text-sm">
           <div className="grid gap-2">
             <div className="flex items-center gap-2 font-medium leading-none">
@@ -109,7 +109,7 @@ export function CollectionVolumeChart() {
             </div>
           </div>
         </div>
-      </CardFooter>
+      </CardFooter> */}
     </Card>
   );
 }

@@ -39,7 +39,7 @@ export function Cart({ className }: CartProps) {
             <div className="flex gap-4">
               <div className="relative h-20 w-20 rounded-lg overflow-hidden">
                 <Image
-                  src="/images/samurai.png"
+                  src="/collections/collectionItem.jpg"
                   alt="NFT"
                   fill
                   className="object-cover"
