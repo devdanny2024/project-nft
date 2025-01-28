@@ -113,15 +113,24 @@ export function Navbar() {
             <Button
               variant="ghost"
               size="icon"
+              onClick={() => setIsWalletModalOpen(true)}
               className={cn(
-                "transition-colors",
+                "relative transition-colors before:absolute before:inset-0 before:-z-10 before:rounded-full before:p-[1px] before:bg-gradient-to-bl before:from-[#614BC3] before:via-[#C8FFE0] before:to-[#33BBC5]",
                 scrolled || !isLandingPage
                   ? "text-foreground hover:bg-transparent"
                   : "text-white hover:bg-transparent"
               )}
-              onClick={() => setIsWalletModalOpen(true)}
             >
-              <WalletMinimal className="h-5 w-5" />
+              <div
+                className={cn(
+                  "rounded-full p-2",
+                  scrolled || !isLandingPage
+                    ? "bg-background dark:bg-[#0D0D0D]"
+                    : "bg-white/10 dark:bg-[#0D0D0D]/50"
+                )}
+              >
+                <WalletMinimal className="h-5 w-5 text-[#000] dark:text-white" />
+              </div>
             </Button>
             <ThemeToggle
               className={cn(
@@ -134,8 +143,8 @@ export function Navbar() {
         </div>
       </nav>
       <WalletModal
-        open={isWalletModalOpen}
-        onOpenChange={setIsWalletModalOpen}
+        isOpen={isWalletModalOpen}
+        onClose={() => setIsWalletModalOpen(false)}
       />
     </>
   );
