@@ -27,78 +27,137 @@ const heroCard = [
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center">
-      {/* Background Image with Dark Gradient */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/hero/hero.jpg"
-          alt="Hero background"
-          fill
-          className="object-cover"
-          priority
-        />
-        {/* Dark gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/50 to-transparent" />
-        {/* Bottom fade to white */}
-        <div className="absolute inset-x-0 bottom-0 h-60 bg-gradient-to-t from-white via-white/40  to-transparent dark:from-[#0D0D0D] dark:to-transparent" />
-      </div>
+    <>
+      {/* Mobile View */}
+      <section className="md:hidden min-h-screen relative">
+        {/* Background Image with Dark Gradient */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/hero/hero.jpg"
+            alt="Hero background"
+            fill
+            className="object-cover"
+            priority
+          />
+          {/* Dark gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/50 to-transparent" />
+          {/* Bottom fade to white/dark */}
+          <div className="absolute inset-x-0 bottom-0 h-60 bg-gradient-to-t from-white via-white/40 to-transparent dark:from-[#0D0D0D] dark:to-transparent" />
+        </div>
 
-      {/* Content */}
-      <div className="relative z-10 px-4 pt-24 pb-8 w-full">
-        <div className="max-w-[1400px] mx-auto">
-          {/* Hero Content */}
-          <div className="mb-8 md:mb-12">
-            <h1 className="text-4xl md:text-6xl font-bold mb-4 text-white leading-9">
-              Discover, collect and create your own
-              <br className="hidden md:block" /> digital masterpiece.
+        <div className="relative z-10 px-4 pt-20 pb-8">
+          <div className="relative rounded-3xl overflow-hidden mb-6">
+            <Image
+              src="/hero/i1.jpg"
+              alt="Featured NFT"
+              width={600}
+              height={600}
+              className="w-full aspect-square object-cover"
+            />
+            {/* Dark gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/50 to-transparent" />
+            <div className="absolute top-4 left-4 z-10 bg-black/60 backdrop-blur-sm text-white text-sm px-4 py-2 rounded-full border border-white/20 flex items-center gap-2">
+              <span>Ekos Genesis</span>
+              <Icons.verify className="w-4 h-4 text-[#00E0B9]" />
+            </div>
+          </div>
+          <div className="space-y-4">
+            <h1 className="text-4xl font-bold text-white leading-tight">
+              Discover, collect and create your own digital masterpiece.
             </h1>
-            <p className="text-3xl text-white/80 mb-8 mt-5">
+            <p className="text-xl text-white/80">
               Best marketplace for crypto collectibles
             </p>
-            <div className="flex gap-4">
-              <Button className="bg-[#00E0B9] hover:bg-[#00E0B9]/90 text-black font-semibold px-8 py-6 rounded-lg">
+            <div className="flex flex-col gap-4 pt-4">
+              <Button className="w-full bg-[#00E0B9] hover:bg-[#00E0B9]/90 text-black font-semibold py-6 rounded-lg">
                 Create
               </Button>
               <Button
                 variant="outline"
-                className="border-white/20 bg-white/10 hover:bg-white/20 text-white font-semibold px-8 py-6 rounded-lg"
+                className="w-full border-white/20 bg-white/10 hover:bg-white/20 text-white font-semibold py-6 rounded-lg"
               >
                 <Compass className="mr-2 h-5 w-5" />
                 Explore
               </Button>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Featured NFTs Grid - Desktop Only */}
-          <div className="hidden md:block relative">
-            {/* Cards grid */}
-            <div className="relative z-10 grid grid-cols-4 gap-4">
-              {heroCard.map((item, index) => (
-                <Card
-                  key={index}
-                  className="bg-black/20 backdrop-blur-sm border-white/10 overflow-hidden rounded-3xl"
+      {/* Desktop View */}
+      <section className="relative min-h-screen items-center hidden md:flex">
+        {/* Background Image with Dark Gradient */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/hero/hero.jpg"
+            alt="Hero background"
+            fill
+            className="object-cover"
+            priority
+          />
+          {/* Dark gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/50 to-transparent" />
+          {/* Bottom fade to white */}
+          <div className="absolute inset-x-0 bottom-0 h-60 bg-gradient-to-t from-white via-white/40 to-transparent dark:from-[#0D0D0D] dark:to-transparent" />
+        </div>
+
+        {/* Content */}
+        <div className="relative z-10 px-4 pt-24 pb-8 w-full">
+          <div className="max-w-[1400px] mx-auto">
+            {/* Hero Content */}
+            <div className="mb-8 md:mb-12">
+              <h1 className="text-4xl md:text-6xl font-bold mb-4 text-white leading-9">
+                Discover, collect and create your own
+                <br className="hidden md:block" /> digital masterpiece.
+              </h1>
+              <p className="text-3xl text-white/80 mb-8 mt-5">
+                Best marketplace for crypto collectibles
+              </p>
+              <div className="flex gap-4">
+                <Button className="bg-[#00E0B9] hover:bg-[#00E0B9]/90 text-black font-semibold px-8 py-6 rounded-lg">
+                  Create
+                </Button>
+                <Button
+                  variant="outline"
+                  className="border-white/20 bg-white/10 hover:bg-white/20 text-white font-semibold px-8 py-6 rounded-lg"
                 >
-                  <div className="relative">
-                    <div className="absolute bottom-7 left-4 z-10">
-                      <div className="bg-black/60 backdrop-blur-sm text-white text-sm px-4 py-4 rounded-full border border-white/20 flex items-center gap-2">
-                        <span>{item.title}</span>
-                        <Icons.verify className="w-4 h-4" />
+                  <Compass className="mr-2 h-5 w-5" />
+                  Explore
+                </Button>
+              </div>
+            </div>
+
+            {/* Featured NFTs Grid */}
+            <div className="relative">
+              {/* Cards grid */}
+              <div className="relative z-10 grid grid-cols-4 gap-4">
+                {heroCard.map((item, index) => (
+                  <Card
+                    key={index}
+                    className="bg-black/20 backdrop-blur-sm border-white/10 overflow-hidden rounded-3xl"
+                  >
+                    <div className="relative">
+                      <div className="absolute bottom-7 left-4 z-10">
+                        <div className="bg-black/60 backdrop-blur-sm text-white text-sm px-4 py-4 rounded-full border border-white/20 flex items-center gap-2">
+                          <span>{item.title}</span>
+                          <Icons.verify className="w-4 h-4" />
+                        </div>
                       </div>
+                      <Image
+                        src={item.image}
+                        alt={item.title}
+                        width={400}
+                        height={400}
+                        className="w-full aspect-square object-cover"
+                      />
                     </div>
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      width={400}
-                      height={400}
-                      className="w-full aspect-square object-cover"
-                    />
-                  </div>
-                </Card>
-              ))}
+                  </Card>
+                ))}
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
