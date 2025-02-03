@@ -1,34 +1,12 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import RootLayout from "app/components/RootLayout"
 import "./globals.css";
-import { Navbar } from "./components/sections/Navbar";
-import { ThemeProvider } from "./components/theme-provider";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Rare NFT Marketplace",
+  title: "Hashihiro NFT Marketplace",
   description: "Discover, collect and create your own digital masterpiece",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Navbar />
-          {children}
-        </ThemeProvider>
-      </body>
-    </html>
-  );
+export default function Layout({ children }: { children: React.ReactNode }) {
+  return <RootLayout>{children}</RootLayout>;
 }

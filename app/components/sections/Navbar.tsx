@@ -29,7 +29,7 @@ export function Navbar() {
       >
         <div className="max-w-[1400px] mx-auto flex items-center justify-between px-4 py-3">
           <div className="flex items-center gap-8">
-            <h1 className="text-xl font-bold text-[#00E0B9]">Rare</h1>
+            <h1 className="text-xl font-bold text-[#00E0B9]">HASHIHIRO</h1>
           </div>
           <div className="hidden md:flex flex-1 items-center gap-8 justify-center">
             <div className="flex items-center gap-4">
@@ -42,7 +42,7 @@ export function Navbar() {
                     : "text-white/80 hover:text-white"
                 )}
               >
-                Rewards
+                Trades
               </a>
               <a
                 href="#"

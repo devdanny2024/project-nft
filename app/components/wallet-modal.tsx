@@ -9,6 +9,8 @@ import {
 import Image from "next/image";
 import { WalletMinimal, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { darkTheme } from "@rainbow-me/rainbowkit";
 
 interface WalletModalProps {
   isOpen: boolean;
@@ -74,7 +76,7 @@ export function WalletModal({ isOpen, onClose }: WalletModalProps) {
 
         <div className="grid grid-cols-3 gap-4 p-6">
           {wallets.map((wallet) => (
-            <button
+            <div
               key={wallet.name}
               className="flex flex-col items-center gap-2 p-4 rounded-2xl hover:bg-muted/50 transition-colors"
             >
@@ -86,8 +88,18 @@ export function WalletModal({ isOpen, onClose }: WalletModalProps) {
                   className="object-contain"
                 />
               </div>
+              <ConnectButton
+              accountStatus="full"
+              chainStatus="full"
+              showBalance={true}
+              theme={darkTheme({
+                accentColor: "#7b3fe4",
+                accentColorForeground: "white",
+                borderRadius: "medium",
+              })}
+    />
               <span className="text-sm font-medium">{wallet.name}</span>
-            </button>
+            </div>
           ))}
         </div>
 
