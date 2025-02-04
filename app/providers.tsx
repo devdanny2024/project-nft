@@ -1,93 +1,33 @@
 "use client";
 
-import "@rainbow-me/rainbowkit/styles.css";
-
-import * as React from "react";
-import { RainbowKitProvider, getDefaultConfig } from "@rainbow-me/rainbowkit";
-import {
-  argentWallet,
-  trustWallet,
-  ledgerWallet,
-} from "@rainbow-me/rainbowkit/wallets";
-// import { configureChains, createConfig, WagmiConfig } from 'wagmi';
-import {
-  mainnet,
-  polygon,
-  optimism,
-  arbitrum,
-  base,
-  zora,
-  goerli,
-} from "wagmi/chains";
-// import { publicProvider } from 'wagmi/providers/public'
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { WagmiProvider } from "wagmi";
+import { RainbowKitProvider, darkTheme } from "@rainbow-me/rainbowkit";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { wagmiConfig } from "@/lib/wagmiConfig";
 
-// const { chains, publicClient, webSocketPublicClient } = configureChains(
-//     [
-//         mainnet,
-//         goerli,
-//     ],
-//     [publicProvider()]
-// );
-
-const projectId = "ede387d4877ed6b263a427423aaf8639";
-
-// const { wallets } = getDefaultWallets({
-//     appName: 'Trait.',
-//     projectId,
-//     chains,
-// });
-
-const demoAppInfo = {
-  appName: "Trait.",
+type Props = {
+  children: React.ReactNode;
 };
-
-// const connectors = connectorsForWallets([
-//     ...wallets,
-//     {
-//         groupName: 'Other',
-//         wallets: [
-//             argentWallet({ projectId, chains }),
-//             trustWallet({ projectId, chains }),
-//             ledgerWallet({ projectId, chains }),
-//         ],
-//     },
-// ]);
-
-const wagmiConfig = getDefaultConfig({
-  appName: "Test",
-  projectId,
-  chains: [mainnet, polygon, optimism, arbitrum, base],
-  ssr: true,
-});
 
 const queryClient = new QueryClient();
 
-const networks = {
-  mainnet: mainnet,
-  goerli: goerli,
-};
+// const network = process.env.NEXT_PUBLIC_CHAIN as keyof typeof networks;
 
-const network = process.env.NEXT_PUBLIC_CHAIN as keyof typeof networks;
-
-export function Providers({ children }: { children: React.ReactNode }) {
+export default function Providers({ children }: Props) {
   return (
-    // <QueryClientProvider client={queryClient}>
-    //   <WagmiConfig config={wagmiConfig}>
-    //     <RainbowKitProvider
-    //       modalSize="compact"
-    //       chains={chains}
-    //       initialChain={networks[network]}
-    //       appInfo={demoAppInfo}
-    //     >
-    //       {children}
-    //     </RainbowKitProvider>
-    //   </WagmiConfig>
-    // </QueryClientProvider>
     <WagmiProvider config={wagmiConfig}>
       <QueryClientProvider client={queryClient}>
-        <RainbowKitProvider>{children}</RainbowKitProvider>
+        <RainbowKitProvider
+          theme={darkTheme({
+            accentColor: "#0E76FD",
+            accentColorForeground: "white",
+            borderRadius: "large",
+            fontStack: "system",
+            overlayBlur: "small",
+          })}
+        >
+          {children}
+        </RainbowKitProvider>
       </QueryClientProvider>
     </WagmiProvider>
   );

@@ -2,18 +2,16 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Menu, Search, WalletMinimal } from "lucide-react";
+import { Menu, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "../theme-toggle";
 import { useScroll } from "../../hooks/use-scroll";
-import { useState } from "react";
-import { WalletModal } from "../wallet-modal";
 import { usePathname } from "next/navigation";
 import { Cart } from "../cart";
+import { CustomConnectButton } from "../CustomConnectButton";
 
 export function Navbar() {
   const scrolled = useScroll(10);
-  const [isWalletModalOpen, setIsWalletModalOpen] = useState(false);
   const pathname = usePathname();
   const isLandingPage = pathname === "/";
 
@@ -110,29 +108,10 @@ export function Navbar() {
                   : "text-white hover:bg-transparent"
               )}
             />
-            {/* // Delete this and connectWallet: */}
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsWalletModalOpen(true)}
-              className={cn(
-                "relative transition-colors before:absolute before:inset-0 before:-z-10 before:rounded-full before:p-[1px] before:bg-gradient-to-bl before:from-[#614BC3] before:via-[#C8FFE0] before:to-[#33BBC5]",
-                scrolled || !isLandingPage
-                  ? "text-foreground hover:bg-transparent"
-                  : "text-white hover:bg-transparent"
-              )}
-            >
-              <div
-                className={cn(
-                  "rounded-full p-2",
-                  scrolled || !isLandingPage
-                    ? "bg-background dark:bg-[#0D0D0D]"
-                    : "bg-white/10 dark:bg-[#0D0D0D]/50"
-                )}
-              >
-                <WalletMinimal className="h-5 w-5 text-[#000] dark:text-white" />
-              </div>
-            </Button>
+            <CustomConnectButton
+              isLandingPage={isLandingPage}
+              scrolled={scrolled}
+            />
             <ThemeToggle
             // className={cn(
             //   scrolled || !isLandingPage
@@ -143,10 +122,6 @@ export function Navbar() {
           </div>
         </div>
       </nav>
-      <WalletModal
-        isOpen={isWalletModalOpen}
-        onClose={() => setIsWalletModalOpen(false)}
-      />
     </>
   );
 }
