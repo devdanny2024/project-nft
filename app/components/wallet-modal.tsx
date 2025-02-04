@@ -9,7 +9,7 @@ import {
 import Image from "next/image";
 import { WalletMinimal, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { darkTheme } from "@rainbow-me/rainbowkit";
 
 interface WalletModalProps {
@@ -89,15 +89,15 @@ export function WalletModal({ isOpen, onClose }: WalletModalProps) {
                 />
               </div>
               <ConnectButton
-              accountStatus="full"
-              chainStatus="full"
-              showBalance={true}
-              theme={darkTheme({
-                accentColor: "#7b3fe4",
-                accentColorForeground: "white",
-                borderRadius: "medium",
-              })}
-    />
+                accountStatus="full"
+                chainStatus="full"
+                showBalance={true}
+                // theme={darkTheme({
+                //   accentColor: "#7b3fe4",
+                //   accentColorForeground: "white",
+                //   borderRadius: "medium",
+                // })}
+              />
               <span className="text-sm font-medium">{wallet.name}</span>
             </div>
           ))}

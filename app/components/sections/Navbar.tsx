@@ -110,6 +110,7 @@ export function Navbar() {
                   : "text-white hover:bg-transparent"
               )}
             />
+            {/* // Delete this and connectWallet: */}
             <Button
               variant="ghost"
               size="icon"
@@ -133,11 +134,11 @@ export function Navbar() {
               </div>
             </Button>
             <ThemeToggle
-              className={cn(
-                scrolled || !isLandingPage
-                  ? "text-foreground hover:bg-transparent"
-                  : "text-white hover:bg-transparent"
-              )}
+            // className={cn(
+            //   scrolled || !isLandingPage
+            //     ? "text-foreground hover:bg-transparent"
+            //     : "text-white hover:bg-transparent"
+            // )}
             />
           </div>
         </div>
