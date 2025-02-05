@@ -9,11 +9,116 @@ import { useScroll } from "../../hooks/use-scroll";
 import { usePathname } from "next/navigation";
 import { Cart } from "../cart";
 import { CustomConnectButton } from "../CustomConnectButton";
+import { useEffect, useState } from "react";
+import { useAccount } from "wagmi";
+import { createClient } from "@supabase/supabase-js";
+
+const supabaseUrl = "https://btxevpafjemxndeddpeh.supabase.co";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ0eGV2cGFmamVteG5kZWRkcGVoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjkwMjA2MTEsImV4cCI6MjA0NDU5NjYxMX0.ky665HE9rFquDofLDNWi4TGxfjn0pW8tBhVhyuLLBT8";
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+const API_KEY = "V4QidqQN3CnapxngEQGMGFl0ZEkS72Bg";
+const ETH_BASE_URL = `https://eth-mainnet.alchemyapi.io/v2/${API_KEY}`;
+const SOLANA_BASE_URL = `https://solana-mainnet.g.alchemy.com/v2/${API_KEY}`;
+
+const address: string = "AwbJHBTKz82h9e2Epm45qGhX4r13FoXfzKCU7TJj3gbx";
+
+interface NFTData {
+  token_id: string;
+  name: string;
+  token_type: string;
+  address: string;
+  image: string | null;
+  owner: string;
+  owner_address: string;
+  price: string | null;
+  blockchain: "ethereum" | "solana";
+}
+
+const fetchEthereumNFTs = async (address: string): Promise<NFTData[]> => {
+  const fetchUrl = `${ETH_BASE_URL}/getNFTs/?owner=${address}`;
+  try {
+    const response = await fetch(fetchUrl);
+    const data = await response.json();
+
+    return data.ownedNfts.map((nft: any) => ({
+      name: nft.metadata?.name || "Unknown",
+      token_type: nft.id.tokenMetadata?.tokenType || "Unknown",
+      token_id: nft.id.tokenId,
+      address: nft.contract.address,
+      image: nft.metadata?.image || null,
+      owner: nft.owner || null,
+      owner_address: address,
+      price: nft.price || null,
+      blockchain: "ethereum",
+    }));
+  } catch (error) {
+    console.error("Error fetching Ethereum NFTs:", error);
+    return [];
+  }
+};
+
+const fetchSolanaNFTs = async (address: string): Promise<NFTData[]> => {
+  const fetchUrl = `${SOLANA_BASE_URL}/getNFTs?owner=${address}`;
+  try {
+    const response = await fetch(fetchUrl);
+    const data = await response.json();
+
+    if (!data.nfts || !data.nfts.length) {
+      console.warn("No NFTs found for this address.");
+      return [];
+    }
+
+    return data.nfts.map((nft: any) => ({
+      token_id: nft.tokenAddress,
+      name: nft.metadata?.name || "Unknown",
+      token_type: "spl-token",
+      address: nft.tokenAddress,
+      image: nft.metadata?.image || null,
+      owner: address,
+      owner_address: address,
+      price: null,
+      blockchain: "solana",
+    }));
+  } catch (error) {
+    console.error("Error fetching Solana NFTs:", error);
+    return [];
+  }
+};
+
+const fetchNFTs = async (): Promise<void> => {
+  if (!address) return;
+
+  try {
+    let nftRows: NFTData[] = [];
+
+    if (address.startsWith("0x")) {
+      nftRows = await fetchEthereumNFTs(address);
+    } else if (address.length === 44) {
+      nftRows = await fetchSolanaNFTs(address);
+    } else {
+      console.error("Unsupported blockchain address format.");
+      return;
+    }
+
+    const { error } = await supabase.from("nfts").insert(nftRows);
+    if (error) {
+      console.error("Error inserting data into Supabase:", error);
+    } else {
+      console.log("NFT data inserted successfully");
+    }
+  } catch (error) {
+    console.error("Error fetching NFTs:", error);
+  }
+};
 
 export function Navbar() {
+  const { isConnected } = useAccount();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const scrolled = useScroll(10);
   const pathname = usePathname();
   const isLandingPage = pathname === "/";
+
 
   return (
     <>
