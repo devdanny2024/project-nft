@@ -100,7 +100,7 @@ export function Recommend() {
                   index === activeIndex ? "opacity-100" : "opacity-0"
                 }`}
               >
-                <div className="relative w-[90%] mx-auto h-[400px] rounded-2xl overflow-hidden mb-4 mt-4">
+                <div className="relative w-[90%] mx-auto h-[400px] rounded-2xl overflow-hidden mb-4 mt-6">
                   <Image
                     src={item.nftImage}
                     alt={`${item.title} NFT`}
@@ -108,9 +108,6 @@ export function Recommend() {
                     className="object-cover"
                     priority={index === 0}
                   />
-                  {/* <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-sm text-white text-sm px-4 py-2 rounded-full border border-white/20">
-                    Last Sale: {item.lastSale}
-                  </div> */}
                   
                   {/* Navigation Buttons */}
                   <button
