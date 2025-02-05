@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 export function Footer() {
   return (
     <footer className="px-4 py-12 bg-[#141414] border-t border-[#2A2A2A]">
-      <div className="max-w-[1400px] mx-auto grid grid-cols-4 gap-8">
+      <div className="max-w-[1400px] mx-auto flex flex-col md:grid md:grid-cols-4  gap-8">
         <div>
           <h3 className="font-bold mb-4">Stay in the loop</h3>
           <p className="text-sm text-[#808080] mb-4">

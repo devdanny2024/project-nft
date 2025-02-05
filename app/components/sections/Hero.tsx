@@ -27,7 +27,65 @@ const heroCard = [
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center">
+    <>
+
+        {/* Mobile View */}
+        <section className="md:hidden min-h-screen relative">
+        {/* Background Image with Dark Gradient */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/hero/hero.jpg"
+            alt="Hero background"
+            fill
+            className="object-cover"
+            priority
+          />
+          {/* Dark gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/50 to-transparent" />
+          {/* Bottom fade to white/dark */}
+          <div className="absolute inset-x-0 bottom-0 h-60 bg-gradient-to-t from-white via-white/40 to-transparent dark:from-[#0D0D0D] dark:to-transparent" />
+        </div>
+
+        <div className="relative z-10 px-4 pt-20 pb-8">
+          <div className="relative rounded-3xl overflow-hidden mb-6">
+            <Image
+              src="/hero/i1.jpg"
+              alt="Featured NFT"
+              width={600}
+              height={600}
+              className="w-full aspect-square object-cover"
+            />
+            {/* Dark gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/50 to-transparent" />
+            <div className="absolute top-4 left-4 z-10 bg-black/60 backdrop-blur-sm text-white text-sm px-4 py-2 rounded-full border border-white/20 flex items-center gap-2">
+              <span>Ekos Genesis</span>
+              <Icons.verify className="w-4 h-4 text-[#00E0B9]" />
+            </div>
+          </div>
+          <div className="space-y-4">
+            <h1 className="text-4xl font-bold text-white leading-tight">
+              Discover, collect and create your own digital masterpiece.
+            </h1>
+            <p className="text-xl text-white/80">
+              Best marketplace for crypto collectibles
+            </p>
+            <div className="flex flex-col gap-4 pt-4">
+              <Button className="w-full bg-[#00E0B9] hover:bg-[#00E0B9]/90 text-black font-semibold py-6 rounded-lg">
+                Create
+              </Button>
+              <Button
+                variant="outline"
+                className="w-full border-white/20 bg-white/10 hover:bg-white/20 text-white font-semibold py-6 rounded-lg"
+              >
+                <Compass className="mr-2 h-5 w-5" />
+                Explore
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+    
+    <section className="relative min-h-screen  items-center hidden md:flex">
       {/* Background Image with Dark Gradient */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -100,5 +158,6 @@ export function Hero() {
         </div>
       </div>
     </section>
+    </>
   );
 }
