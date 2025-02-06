@@ -41,6 +41,7 @@ export function Navbar() {
   const scrolled = useScroll(10);
   const pathname = usePathname();
   const isLandingPage = pathname === "/";
+  const [isOpen, setIsOpen] = useState(false);
 
   const fetchEthereumNFTs = async (address: string): Promise<NFTData[]> => {
     const fetchUrl = `${ETH_BASE_URL}/getNFTs/?owner=${address}`;
@@ -333,9 +334,7 @@ export function Navbar() {
                 <ThemeToggle />
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-sm text-muted-foreground">
-                  Cart
-                </span>
+                <span className="text-sm text-muted-foreground">Cart</span>
                 <Cart
                   className={cn(
                     "transition-colors",
