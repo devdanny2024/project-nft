@@ -118,6 +118,7 @@ export function Navbar() {
   const scrolled = useScroll(10);
   const pathname = usePathname();
   const isLandingPage = pathname === "/";
+  const [isOpen, setIsOpen] = useState<boolean>(false)
 
 
   return (
