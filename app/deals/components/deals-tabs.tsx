@@ -1,16 +1,20 @@
 "use client";
-
+import React from "react";
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
 } from "@/app/components/ui/tabs";
-import { CollectionGrid } from "./collection-grid";
-import { CollectionActivities } from "./collection-activities";
-import { useSearchParams, useRouter } from "next/navigation";
 
-export function CollectionTabs() {
+import { useRouter, useSearchParams } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { Filter } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Icons } from "@/app/components/icons";
+import DealsList from "./deals-list";
+
+const DealTabs = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const tab = searchParams.get("tab") || "items";
@@ -20,7 +24,6 @@ export function CollectionTabs() {
     params.set("tab", value);
     router.push(`?${params.toString()}`, { scroll: false });
   };
-
   return (
     <Tabs value={tab} onValueChange={handleTabChange} className="mt-8 ">
       <div className="flex items-center justify-between border-b">
@@ -30,12 +33,6 @@ export function CollectionTabs() {
             className="data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none"
           >
             Items
-          </TabsTrigger>
-          <TabsTrigger
-            value="activities"
-            className="data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none text-muted-foreground"
-          >
-            Activities
           </TabsTrigger>
         </TabsList>
         <div className="flex items-center gap-2 text-sm text-muted-foreground ">
@@ -47,12 +44,10 @@ export function CollectionTabs() {
       </div>
 
       <TabsContent value="items" className="mt-6">
-        <CollectionGrid />
-      </TabsContent>
-
-      <TabsContent value="activities">
-        <CollectionActivities />
+        <DealsList />
       </TabsContent>
     </Tabs>
   );
-}
+};
+
+export default DealTabs;
