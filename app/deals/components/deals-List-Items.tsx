@@ -28,11 +28,11 @@ const DealsListItems = () => {
                 height={40}
                 className="object-cover"
               />{" "}
-              {/*add comment*/}
+              {/*sender image*/}
             </div>
             <div className="text-sm ">
-              <div className="font-bold">@DQ3</div> {/*add comment*/}
-              <div className="">0x768765....987564ft</div> {/*add comment*/}
+              <div className="font-bold">@DQ3</div> {/*sender username*/}
+              <div className="">0x768765....987564ft</div> {/*sender address*/}
             </div>
           </div>
 
@@ -47,11 +47,11 @@ const DealsListItems = () => {
                 height={40}
                 className="object-cover"
               />{" "}
-              {/*add comment*/}
+              {/*reciever pfp*/}
             </div>
             <div className="text-sm ">
-              <div className="font-bold">@DQ3</div> {/*add comment*/}
-              <div className="">0x768765....987564ft</div>
+              <div className="font-bold">@DQ3</div> {/*reciever username*/}
+              <div className="">0x768765....987564ft</div>{/*reciever address*/}
             </div>
           </div>
         </div>
@@ -65,7 +65,7 @@ const DealsListItems = () => {
               fill
               className="object-cover"
             />
-            {/*add comment*/}
+            {/*sender nft image*/}
           </div>
           <div className="">
             <ArrowRightLeft />
@@ -77,7 +77,7 @@ const DealsListItems = () => {
               fill
               className="object-cover"
             />
-            {/*add comment*/}
+            {/*reciever nft image*/}
           </div>
         </div>
       </div>
