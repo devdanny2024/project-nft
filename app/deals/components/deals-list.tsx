@@ -6,8 +6,9 @@ import React from "react";
 import DealsListItems from "./deals-List-Items";
 
 const items = Array(10).fill({
-    id:"#758767"
-})
+  id: "#758767",
+});
+
 const DealsList = () => {
   return (
     <div>
@@ -35,8 +36,8 @@ const DealsList = () => {
       </div>
       {/* list items */}
       <div className="space-y-4 mt-5">
-        {items.map((item, index)=>(
-            <DealsListItems key={index}/>
+        {items.map((item, index) => (
+          <DealsListItems key={index} />
         ))}
       </div>
     </div>

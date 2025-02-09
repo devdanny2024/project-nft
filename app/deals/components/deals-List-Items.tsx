@@ -27,11 +27,12 @@ const DealsListItems = () => {
                 width={40}
                 height={40}
                 className="object-cover"
-              />
+              />{" "}
+              {/*add comment*/}
             </div>
             <div className="text-sm ">
-              <div className="font-bold">@DQ3</div>
-              <div className="">0x768765....987564ft</div>
+              <div className="font-bold">@DQ3</div> {/*add comment*/}
+              <div className="">0x768765....987564ft</div> {/*add comment*/}
             </div>
           </div>
 
@@ -45,10 +46,11 @@ const DealsListItems = () => {
                 width={40}
                 height={40}
                 className="object-cover"
-              />
+              />{" "}
+              {/*add comment*/}
             </div>
             <div className="text-sm ">
-              <div className="font-bold">@DQ3</div>
+              <div className="font-bold">@DQ3</div> {/*add comment*/}
               <div className="">0x768765....987564ft</div>
             </div>
           </div>
@@ -63,6 +65,7 @@ const DealsListItems = () => {
               fill
               className="object-cover"
             />
+            {/*add comment*/}
           </div>
           <div className="">
             <ArrowRightLeft />
@@ -74,6 +77,7 @@ const DealsListItems = () => {
               fill
               className="object-cover"
             />
+            {/*add comment*/}
           </div>
         </div>
       </div>
