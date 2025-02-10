@@ -1,9 +1,45 @@
 import { Separator } from "@/components/ui/separator";
 import { ArrowRightLeft } from "lucide-react";
 import Image from "next/image";
+import { normalize } from "viem/ens";
 import React from "react";
+import { useEnsAvatar, useEnsName } from "wagmi";
 
-const DealsListItems = () => {
+interface TransferEvent {
+  args: {
+    from: `0x${string}`;
+    to: `0x${string}`;
+    tokenId: bigint;
+  };
+  address: `0x${string}`;
+  blockTimestamp: string;
+}
+
+interface DealsListItemsProps {
+  transfer: TransferEvent;
+}
+
+const DealsListItems = ({ transfer }: DealsListItemsProps) => {
+  const unixTimestamp = parseInt(transfer.blockTimestamp, 16);
+  const from = transfer.args.from;
+  const to = transfer.args.to;
+
+  const sender = useEnsName({
+    address: from,
+  });
+
+  const receiver = useEnsName({
+    address: to,
+  });
+
+  const senderAvatar = useEnsAvatar({
+    name: sender.data as string,
+  });
+
+  const receiverAvatar = useEnsAvatar({
+    name: receiver.data as string,
+  });
+
   return (
     <div className="border p-4 rounded-lg ">
       <div className="flex items-center gap-3 text-xs">
@@ -15,24 +51,29 @@ const DealsListItems = () => {
           <div className=""></div>
         </div>
         <div className="font-bold">Ongoing Deal</div>
-        <div className="text-gray-500">fri jan 31 2025 18:06</div>
+        <div className="text-gray-500">
+          {new Date(unixTimestamp * 1000).toUTCString()}
+        </div>
       </div>
       <div className="mt-4 py-4 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-2">
             <div className="h-10 w-10 rounded-full overflow-hidden">
               <Image
-                src={"/collections/c5.jpg"}
+                src={senderAvatar.data || "/collections/c5.jpg"}
                 alt={"akt"}
                 width={40}
                 height={40}
                 className="object-cover"
-              />{" "}
-              {/*sender image*/}
+              />
             </div>
             <div className="text-sm ">
-              <div className="font-bold">@DQ3</div> {/*sender username*/}
-              <div className="">0x768765....987564ft</div> {/*sender address*/}
+              <div className="font-bold">
+                {sender.data || "username not set"}
+              </div>
+              <div className="">
+                {from && `${from.slice(0, 8)}....${from.slice(-4)}`}
+              </div>
             </div>
           </div>
 
@@ -41,17 +82,20 @@ const DealsListItems = () => {
           <div className="flex items-center gap-2">
             <div className="h-10 w-10 rounded-full overflow-hidden">
               <Image
-                src={"/collections/c6.jpg"}
+                src={receiverAvatar.data || "/collections/c6.jpg"}
                 alt={"akt"}
                 width={40}
                 height={40}
                 className="object-cover"
-              />{" "}
-              {/*reciever pfp*/}
+              />
             </div>
             <div className="text-sm ">
-              <div className="font-bold">@DQ3</div> {/*reciever username*/}
-              <div className="">0x768765....987564ft</div>{/*reciever address*/}
+              <div className="font-bold">
+                {receiver.data || "username not set"}
+              </div>
+              <div className="">
+                {to && `${to.slice(0, 8)}....${to.slice(-4)}`}
+              </div>
             </div>
           </div>
         </div>

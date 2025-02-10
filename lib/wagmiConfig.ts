@@ -1,7 +1,7 @@
 "use client";
 
 // import { getDefaultConfig } from "@rainbow-me/rainbowkit";
-import { createConfig } from "wagmi";
+import { http, createConfig } from "wagmi";
 import {
   mainnet,
   polygon,
@@ -52,5 +52,9 @@ export const wagmiConfig = createConfig({
   connectors,
   projectId,
   chains: [mainnet, polygon, optimism, arbitrum, base, goerli, sepolia],
+  transports: {
+    [mainnet.id]: http(),
+    [sepolia.id]: http(),
+  },
   ssr: true,
 });
