@@ -4,10 +4,25 @@ import { Input } from "@/components/ui/input";
 import { Filter } from "lucide-react";
 import React from "react";
 import DealsListItems from "./deals-List-Items";
+import { useReadContracts } from "wagmi";
+// import moonBirdABI from "../../assets/abi/MoonBirdABI.json";
+import { useEffect } from "react";
+import { usePublicClient } from "wagmi";
+import { Address, Log, parseAbiItem } from "viem";
 
 const items = Array(10).fill({
   id: "#758767",
 });
+
+// const moonbirdContract = {
+//   address: "0x23581767a106ae21c074b2276D25e5C3e136a68b",
+//   abi: moonBirdABI,
+// } as const;
+
+const addresses: Address[] = [
+  "0x23581767a106ae21c074b2276D25e5C3e136a68b",
+  "0x333814f5E16EEE61d0c0B03a5b6ABbD424B381c2",
+];
 
 const DealsList = () => {
   return (
