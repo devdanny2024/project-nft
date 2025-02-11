@@ -23,6 +23,7 @@ const DealsListItems = ({ transfer }: DealsListItemsProps) => {
   const unixTimestamp = parseInt(transfer.blockTimestamp, 16);
   const from = transfer.from;
   const to = transfer.to;
+  const transactionHash = transfer.transactionHash;
 
   const sender = useEnsName({
     address: from,
@@ -82,6 +83,15 @@ const DealsListItems = ({ transfer }: DealsListItemsProps) => {
         <div className="text-gray-500">
           {new Date(unixTimestamp * 1000).toUTCString()}
         </div>
+        {/* <div className="text-gray-500"></div> */}
+        <a
+          href={`https://etherscan.io/tx/${transactionHash}`}
+          target="_blank"
+          className="text-blue-400"
+        >
+          {transactionHash.slice(0, 8)}....
+          {transactionHash.slice(-6)}
+        </a>
       </div>
       <div className="mt-4 py-4 flex items-center justify-between">
         <div className="flex items-center gap-2">
