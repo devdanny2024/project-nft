@@ -1,18 +1,18 @@
 import { Separator } from "@/components/ui/separator";
 import { ArrowRightLeft } from "lucide-react";
 import Image from "next/image";
-import { normalize } from "viem/ens";
 import React from "react";
 import { useEnsAvatar, useEnsName } from "wagmi";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 interface TransferEvent {
-  args: {
-    from: `0x${string}`;
-    to: `0x${string}`;
-    tokenId: bigint;
-  };
-  address: `0x${string}`;
+  from: `0x${string}`;
+  to: `0x${string}`;
+  tokenId: string;
   blockTimestamp: string;
+  transactionHash: `0x${string}`;
+  contractAddress: `0x${string}`;
 }
 
 interface DealsListItemsProps {
@@ -21,8 +21,8 @@ interface DealsListItemsProps {
 
 const DealsListItems = ({ transfer }: DealsListItemsProps) => {
   const unixTimestamp = parseInt(transfer.blockTimestamp, 16);
-  const from = transfer.args.from;
-  const to = transfer.args.to;
+  const from = transfer.from;
+  const to = transfer.to;
 
   const sender = useEnsName({
     address: from,
@@ -40,6 +40,34 @@ const DealsListItems = ({ transfer }: DealsListItemsProps) => {
     name: receiver.data as string,
   });
 
+  const [metadata, setMetadata] = useState("/collections/collectionItem.jpg");
+
+  const API_KEY = "V4QidqQN3CnapxngEQGMGFl0ZEkS72Bg";
+
+  const options = {
+    method: "GET",
+    url: `https://eth-mainnet.g.alchemy.com/nft/v3/${API_KEY}/getNFTMetadata`,
+    params: {
+      contractAddress: transfer.contractAddress,
+      tokenId: transfer.tokenId,
+      refreshCache: "false",
+    },
+    headers: { accept: "application/json" },
+  };
+
+  useEffect(() => {
+    const fetch = async () => {
+      const { data } = await axios.request(options);
+      // console.log(
+      //   data.image.cachedUrl,
+      //   data.image.originalUrl,
+      //   data.image.thumbnailUrl
+      // );
+      setMetadata(data.image.originalUrl);
+    };
+    fetch();
+  }, []);
+
   return (
     <div className="border p-4 rounded-lg ">
       <div className="flex items-center gap-3 text-xs">
@@ -50,7 +78,7 @@ const DealsListItems = ({ transfer }: DealsListItemsProps) => {
           </div>
           <div className=""></div>
         </div>
-        <div className="font-bold">Ongoing Deal</div>
+        <div className="font-bold">Completed Deal</div>
         <div className="text-gray-500">
           {new Date(unixTimestamp * 1000).toUTCString()}
         </div>
@@ -104,14 +132,15 @@ const DealsListItems = ({ transfer }: DealsListItemsProps) => {
         <div className="flex items-center gap-4">
           <div className="h-12 w-12 rounded-lg overflow-hidden relative">
             <Image
-              src={"/collections/collectionItem.jpg"}
+              src={metadata}
               alt={"akt"}
               fill
+              sizes=""
               className="object-cover"
             />
             {/*sender nft image*/}
           </div>
-          <div className="">
+          {/* <div className="">
             <ArrowRightLeft />
           </div>
           <div className="h-12 w-12 rounded-lg overflow-hidden relative">
@@ -121,8 +150,8 @@ const DealsListItems = ({ transfer }: DealsListItemsProps) => {
               fill
               className="object-cover"
             />
-            {/*reciever nft image*/}
-          </div>
+            reciever nft image
+          </div> */}
         </div>
       </div>
     </div>
