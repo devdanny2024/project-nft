@@ -132,7 +132,7 @@ const DealsListItems = ({ transfer }: DealsListItemsProps) => {
         <div className="flex items-center gap-4">
           <div className="h-12 w-12 rounded-lg overflow-hidden relative">
             <Image
-              src={metadata}
+              src={metadata || "/collections/c6.jpg"}
               alt={"akt"}
               fill
               sizes=""
