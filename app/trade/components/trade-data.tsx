@@ -123,39 +123,6 @@ const TradeData = () => {
           </AccordionItem>
         </Accordion>
       </div>
-      <div className="col-span-12 mt-10">
-        <div className="space-y-10">
-          <h3 className="text-3xl font-semibold">More from this Collection</h3>
-
-          <div className="flex gap-3 flex-wrap">
-            {[1, 2, 3, 4].map((item, index) => (
-              <Card key={index} className="overflow-hidden rounded-2xl w-56">
-                <div className="relative aspect-square">
-                  <Image
-                    src={"/collections/collectionItem.jpg"}
-                    alt={`ON1 jn`}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div className="p-4">
-                  <div className="text-sm text-muted-foreground">ON1hbiu</div>
-                  <div className="flex items-center justify-between">
-                    <div className="">kbguhlj</div>
-                    <Badge
-                      variant="secondary"
-                      className="flex items-center gap-2 text-[#614BC3]"
-                    >
-                      <Gem className="h-3 w-3 " />
-                      <div className="">839</div>
-                    </Badge>
-                  </div>
-                </div>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </div>
     </div>
   );
 };

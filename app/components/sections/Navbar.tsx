@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import { useAccount } from "wagmi";
 import { createClient } from "@supabase/supabase-js";
 import axios from "axios";
+import Link from "next/link";
 
 const supabaseUrl = "https://btxevpafjemxndeddpeh.supabase.co";
 const supabaseKey =
@@ -165,71 +166,19 @@ export function Navbar() {
             </div>
             <div className="flex flex-1 items-center gap-8 justify-center">
               <div className="flex items-center gap-4">
-                <a
-                  href="#"
-                  className={cn(
-                    "text-sm transition-colors",
-                    scrolled || !isLandingPage
-                      ? "text-muted-foreground hover:text-foreground"
-                      : "text-white/80 hover:text-white"
-                  )}
-                >
+              <Link href="/trade" className="text-sm transition-colors hover:text-[#00E0B9]">
                   Trades
-                </a>
-                <a
-                  href="#"
-                  className={cn(
-                    "text-sm transition-colors",
-                    scrolled || !isLandingPage
-                      ? "text-muted-foreground hover:text-foreground"
-                      : "text-white/80 hover:text-white"
-                  )}
-                >
-                  Airdrops
-                </a>
-                <a
-                  href="#"
-                  className={cn(
-                    "text-sm transition-colors",
-                    scrolled || !isLandingPage
-                      ? "text-muted-foreground hover:text-foreground"
-                      : "text-white/80 hover:text-white"
-                  )}
-                >
-                  Collections
-                </a>
+                </Link>
+                <Link href="/deals" className="text-sm transition-colors hover:text-[#00E0B9]">
+                  Deals
+                </Link>
               </div>
               <div className="flex-1 max-w-xl">
-                <div className="relative">
-                  <Search
-                    className={cn(
-                      "absolute left-3 top-2.5 h-4 w-4",
-                      scrolled || !isLandingPage
-                        ? "text-muted-foreground"
-                        : "text-white/60"
-                    )}
-                  />
-                  <Input
-                    placeholder="Search items, collections, and accounts"
-                    className={cn(
-                      "pl-10 border-0 focus-visible:ring-0 transition-colors rounded-full",
-                      scrolled || !isLandingPage
-                        ? "bg-muted/50 text-foreground placeholder:text-muted-foreground"
-                        : "bg-white/10 text-white placeholder:text-white/60"
-                    )}
-                  />
-                </div>
+              
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <Cart
-                className={cn(
-                  "transition-colors",
-                  scrolled || !isLandingPage
-                    ? "text-foreground hover:bg-transparent"
-                    : "text-white hover:bg-transparent"
-                )}
-              />
+          
               <CustomConnectButton
                 isLandingPage={isLandingPage}
                 scrolled={scrolled}
@@ -299,24 +248,12 @@ export function Navbar() {
 
             {/* Mobile Navigation Links */}
             <div className="space-y-4">
-              <a
-                href="#"
-                className="block text-lg hover:text-[#00E0B9] transition-colors"
-              >
-                Trades
-              </a>
-              <a
-                href="#"
-                className="block text-lg hover:text-[#00E0B9] transition-colors"
-              >
-                Airdrops
-              </a>
-              <a
-                href="#"
-                className="block text-lg hover:text-[#00E0B9] transition-colors"
-              >
-                Collections
-              </a>
+            <Link href="/trade" className="text-sm transition-colors hover:text-[#00E0B9]">
+                  Trades
+                </Link>
+              <Link href="/deals" className="text-sm transition-colors hover:text-[#00E0B9]">
+                  Deals
+              </Link>
             </div>
 
             {/* Mobile Connect Button and Theme Toggle */}
@@ -335,13 +272,6 @@ export function Navbar() {
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-sm text-muted-foreground">Cart</span>
-                <Cart
-                  className={cn(
-                    "transition-colors",
-
-                    "text-foreground hover:bg-transparent"
-                  )}
-                />
               </div>
             </div>
           </div>
