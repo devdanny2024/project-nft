@@ -19,10 +19,10 @@ interface TransferEvent {
   contractAddress: `0x${string}`;
 }
 
-const supabase = createClient(
-  "https://dankbbqrzjuyxqjgrsjh.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRhbmtiYnFyemp1eXhxamdyc2poIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzg2MDc1OTEsImV4cCI6MjA1NDE4MzU5MX0.3G5p9e8qYw6CIfxYHZFKFcbVfojMYRGg3pSAe5_u6xA"
-);
+const supabaseUrl = "https://btxevpafjemxndeddpeh.supabase.co";
+const supabaseKey =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ0eGV2cGFmamVteG5kZWRkcGVoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjkwMjA2MTEsImV4cCI6MjA0NDU5NjYxMX0.ky665HE9rFquDofLDNWi4TGxfjn0pW8tBhVhyuLLBT8";
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 export const addresses = [
   "0x23581767a106ae21c074b2276D25e5C3e136a68b",
@@ -44,6 +44,7 @@ export const addresses = [
 ] as const satisfies `0x${string}`[];
 
 const DealsList = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [transfers, setTransfers] = useState<TransferEvent[]>([]);
 
   useEffect(() => {
@@ -56,6 +57,10 @@ const DealsList = () => {
           .limit(20);
         const transfers: TransferEvent[] = data || [];
         setTransfers(transfers);
+        setIsLoading(false);
+        if (error) {
+          console.log("Error: ", error);
+        }
       } catch (error) {
         console.error("Error: ", error);
       }
@@ -127,9 +132,13 @@ const DealsList = () => {
       </div>
       {/* list items */}
       <div className="space-y-4 mt-5">
-        {transfers.map((transfer, index) => (
-          <DealsListItems key={index} transfer={transfer} />
-        ))}
+        {isLoading ? (
+          <p>Loading</p>
+        ) : (
+          transfers.map((transfer, index) => (
+            <DealsListItems key={index} transfer={transfer} />
+          ))
+        )}
       </div>
     </div>
   );
