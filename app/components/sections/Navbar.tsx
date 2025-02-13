@@ -33,6 +33,7 @@ interface NFTData {
   owner: string;
   owner_address: string;
   price: string | null;
+  floor_price: number | null;
   blockchain: "ethereum" | "solana";
 }
 
@@ -56,6 +57,7 @@ export function Navbar() {
       }
 
       return data.ownedNfts.map((nft: any) => ({
+        
         name: nft.metadata?.name || "Unknown",
         token_type: nft.id.tokenMetadata?.tokenType || "Unknown",
         token_id: nft.id.tokenId,
