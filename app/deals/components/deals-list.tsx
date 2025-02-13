@@ -10,6 +10,7 @@ import { abi } from "@/app/assets/TransferABI";
 import { createClient } from "@supabase/supabase-js";
 import { addresses } from "@/app/assets/Addresses";
 import axios from "axios";
+import Loading from "@/app/loading";
 
 interface TransferEvent {
   from: `0x${string}`;
@@ -40,13 +41,13 @@ const DealsList = () => {
           .limit(20);
         const transfers: TransferEvent[] = data || [];
         setTransfers(transfers);
-        setIsLoading(false);
         if (error) {
           console.log("Error: ", error);
         }
       } catch (error) {
         console.error("Error: ", error);
       }
+      setIsLoading(false);
     };
     fetch();
   }, []); //fetch from supabase
@@ -108,7 +109,10 @@ const DealsList = () => {
         })
       );
       insert(transfer);
-      setTransfers((prevTransfers) => [...transfer, ...prevTransfers]);
+      setTransfers((prevTransfers) => {
+        const updatedTransfers = [...transfer, ...prevTransfers];
+        return updatedTransfers.slice(0, 20); // Keep only the first 20 transfers
+      });
     },
   });
 
@@ -145,7 +149,7 @@ const DealsList = () => {
       {/* list items */}
       <div className="space-y-4 mt-5">
         {isLoading ? (
-          <p>Loading</p>
+          <Loading />
         ) : (
           transfers.map((transfer, index) => (
             <DealsListItems key={index} transfer={transfer} />
