@@ -3,8 +3,6 @@ import { ArrowRightLeft } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 import { useEnsAvatar, useEnsName } from "wagmi";
-import axios from "axios";
-import { useEffect, useState } from "react";
 
 interface TransferEvent {
   from: `0x${string}`;
@@ -13,6 +11,7 @@ interface TransferEvent {
   blockTimestamp: string;
   transactionHash: `0x${string}`;
   contractAddress: `0x${string}`;
+  image: string | null;
 }
 
 interface DealsListItemsProps {
@@ -40,34 +39,6 @@ const DealsListItems = ({ transfer }: DealsListItemsProps) => {
   const receiverAvatar = useEnsAvatar({
     name: receiver.data as string,
   });
-
-  const [metadata, setMetadata] = useState("/collections/collectionItem.jpg");
-
-  const API_KEY = "V4QidqQN3CnapxngEQGMGFl0ZEkS72Bg";
-
-  const options = {
-    method: "GET",
-    url: `https://eth-mainnet.g.alchemy.com/nft/v3/${API_KEY}/getNFTMetadata`,
-    params: {
-      contractAddress: transfer.contractAddress,
-      tokenId: transfer.tokenId,
-      refreshCache: "false",
-    },
-    headers: { accept: "application/json" },
-  };
-
-  useEffect(() => {
-    const fetch = async () => {
-      const { data } = await axios.request(options);
-      // console.log(
-      //   data.image.cachedUrl,
-      //   data.image.originalUrl,
-      //   data.image.thumbnailUrl
-      // );
-      setMetadata(data.image.originalUrl);
-    };
-    fetch();
-  }, []);
 
   return (
     <div className="border p-4 rounded-lg ">
@@ -161,12 +132,15 @@ const DealsListItems = ({ transfer }: DealsListItemsProps) => {
         {/* <ArrowRightLeft /> */}
         <div className="flex items-center gap-4">
           <div className="h-12 w-12 rounded-lg overflow-hidden relative">
-            <Image
-              src={metadata}
+            <img
+              src={transfer.image || "/collections/collectionItem.jpg"}
               alt={"akt"}
-              fill
+              // fill
               sizes=""
               className="object-cover"
+              onError={(e) =>
+                (e.currentTarget.src = "/collections/collectionItem.jpg")
+              }
             />
             {/*sender nft image*/}
           </div>
