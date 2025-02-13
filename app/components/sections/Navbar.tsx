@@ -50,6 +50,7 @@ export function Navbar() {
 
     try {
       const { data } = await axios.get(fetchUrl);
+      console.log(data);
 
       if (!data.ownedNfts || !data.ownedNfts.length) {
         console.warn("No NFTs on ETH chain found for this address.");
@@ -168,19 +169,22 @@ export function Navbar() {
             </div>
             <div className="flex flex-1 items-center gap-8 justify-center">
               <div className="flex items-center gap-4">
-              <Link href="/trade" className="text-sm transition-colors hover:text-[#00E0B9]">
+                <Link
+                  href="/trade"
+                  className="text-sm transition-colors hover:text-[#00E0B9]"
+                >
                   Trades
                 </Link>
-                <Link href="/deals" className="text-sm transition-colors hover:text-[#00E0B9]">
+                <Link
+                  href="/deals"
+                  className="text-sm transition-colors hover:text-[#00E0B9]"
+                >
                   Deals
                 </Link>
               </div>
-              <div className="flex-1 max-w-xl">
-              
-              </div>
+              <div className="flex-1 max-w-xl"></div>
             </div>
             <div className="flex items-center gap-4">
-          
               <CustomConnectButton
                 isLandingPage={isLandingPage}
                 scrolled={scrolled}
@@ -250,11 +254,17 @@ export function Navbar() {
 
             {/* Mobile Navigation Links */}
             <div className="space-y-4">
-            <Link href="/trade" className="text-sm transition-colors hover:text-[#00E0B9]">
-                  Trades
-                </Link>
-              <Link href="/deals" className="text-sm transition-colors hover:text-[#00E0B9]">
-                  Deals
+              <Link
+                href="/trade"
+                className="text-sm transition-colors hover:text-[#00E0B9]"
+              >
+                Trades
+              </Link>
+              <Link
+                href="/deals"
+                className="text-sm transition-colors hover:text-[#00E0B9]"
+              >
+                Deals
               </Link>
             </div>
 
