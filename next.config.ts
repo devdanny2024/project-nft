@@ -4,6 +4,7 @@ const allowedDomains = [
   "euc.li",
   "ens.xyz",
   "nft-cdn.alchemy.com",
+  "i.imgur.com",
   "i.seadn.io", // OpenSea images
   "ipfs.io", // IPFS gateway
   "cloudflare-ipfs.com", // IPFS via Cloudflare
