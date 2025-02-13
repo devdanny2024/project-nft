@@ -70,13 +70,33 @@ const DealsListItems = ({ transfer }: DealsListItemsProps) => {
 
   return (
     <div className="border p-4 rounded-lg ">
-      <div className="flex items-center gap-3 text-xs">
-        <div className="flex items-center">
-          <div className=""></div>
+      <div className="flex flex-col md:flex-row items-center gap-3 text-xs">
+        <div className="flex items-center gap-2">
+          <div className="">
+            <div className="h-8 w-8 rounded-full overflow-hidden">
+              <Image
+                src={senderAvatar.data || "/collections/c5.jpg"}
+                alt={"akt"}
+                width={40}
+                height={40}
+                className="object-cover"
+              />
+            </div>
+          </div>
           <div className="border border-[#33BBC5] p-1 px-2 text-[#33BBC5] text-[11px] font-bold rounded">
             Direct Deal
           </div>
-          <div className=""></div>
+          <div className="">
+            <div className="h-8 w-8 rounded-full overflow-hidden">
+              <Image
+                src={senderAvatar.data || "/collections/c5.jpg"}
+                alt={"akt"}
+                width={40}
+                height={40}
+                className="object-cover"
+              />
+            </div>
+          </div>
         </div>
         <div className="font-bold">Completed Deal</div>
         <div className="text-gray-500">
@@ -84,7 +104,7 @@ const DealsListItems = ({ transfer }: DealsListItemsProps) => {
         </div>
       </div>
       <div className="mt-4 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-2">
+        <div className=" md:flex items-center gap-2">
           <div className="flex items-center gap-2">
             <div className="h-10 w-10 rounded-full overflow-hidden">
               <Image

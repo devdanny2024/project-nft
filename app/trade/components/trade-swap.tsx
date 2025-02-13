@@ -7,7 +7,7 @@ import React from "react";
 const TradeSwap = () => {
   return (
     <div className="flex justify-center items-center w-full min-h-96">
-      <div className="flex items-center gap-12">
+      <div className="flex flex-col md:flex-row items-center gap-12 my-5">
         <Card className="overflow-hidden rounded-2xl w-56">
           <div className="relative aspect-square">
             <Image
