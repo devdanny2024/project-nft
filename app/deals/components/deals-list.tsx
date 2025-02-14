@@ -95,13 +95,13 @@ const DealsList = () => {
         logs.map(async (log) => {
           const imageUrl = await fetchNFTImage(
             log.address,
-            log.args.tokenId.toString()
+            log.args?.tokenId?.toString() ?? "0"
           );
           return {
             from: log.args.from as `0x${string}`,
             to: log.args.to as `0x${string}`,
-            tokenId: log.args.tokenId.toString(),
-            blockTimestamp: log.blockTimestamp,
+            tokenId: log.args?.tokenId?.toString() ?? "0",
+            blockTimestamp: (log as any).blockTimestamp ?? 0,
             transactionHash: log.transactionHash,
             contractAddress: log.address,
             image: imageUrl,
