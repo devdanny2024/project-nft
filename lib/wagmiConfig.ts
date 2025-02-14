@@ -51,7 +51,7 @@ export const wagmiConfig = createConfig({
   appName: "Project-NFT",
   connectors,
   projectId,
-  chains: [mainnet, polygon, optimism, arbitrum, base, goerli, sepolia],
+  chains: [mainnet, sepolia],
   transports: {
     [mainnet.id]: http(),
     [sepolia.id]: http(),
