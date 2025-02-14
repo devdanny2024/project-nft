@@ -48,9 +48,9 @@ const connectors = connectorsForWallets(
 );
 
 export const wagmiConfig = createConfig({
-  appName: "Project-NFT",
+  // appName: "Project-NFT",
   connectors,
-  projectId,
+  // projectId,
   chains: [mainnet, sepolia],
   transports: {
     [mainnet.id]: http(),
