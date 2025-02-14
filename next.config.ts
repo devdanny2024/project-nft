@@ -19,6 +19,7 @@ const allowedDomains = [
   "manifold.xyz", // Manifold NFT platform
   "mintbase.io", // Mintbase NFT marketplace
   "async.art", // Async Art platform
+  "data.syou-nft.com",
 ];
 
 const nextConfig: NextConfig = {

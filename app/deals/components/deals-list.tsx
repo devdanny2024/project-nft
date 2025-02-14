@@ -22,9 +22,9 @@ interface TransferEvent {
   image: string | null;
 }
 
-const supabaseUrl = "https://dankbbqrzjuyxqjgrsjh.supabase.co";
+const supabaseUrl = "https://btxevpafjemxndeddpeh.supabase.co";
 const supabaseKey =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRhbmtiYnFyemp1eXhxamdyc2poIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzg2MDc1OTEsImV4cCI6MjA1NDE4MzU5MX0.3G5p9e8qYw6CIfxYHZFKFcbVfojMYRGg3pSAe5_u6xA";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ0eGV2cGFmamVteG5kZWRkcGVoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjkwMjA2MTEsImV4cCI6MjA0NDU5NjYxMX0.ky665HE9rFquDofLDNWi4TGxfjn0pW8tBhVhyuLLBT8";
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 const DealsList = () => {
@@ -95,13 +95,13 @@ const DealsList = () => {
         logs.map(async (log) => {
           const imageUrl = await fetchNFTImage(
             log.address,
-            log.args.tokenId.toString()
+            log.args?.tokenId?.toString() ?? "0"
           );
           return {
             from: log.args.from as `0x${string}`,
             to: log.args.to as `0x${string}`,
-            tokenId: log.args.tokenId.toString(),
-            blockTimestamp: log.blockTimestamp,
+            tokenId: log.args?.tokenId?.toString() ?? "0",
+            blockTimestamp: (log as any).blockTimestamp ?? 0,
             transactionHash: log.transactionHash,
             contractAddress: log.address,
             image: imageUrl,
