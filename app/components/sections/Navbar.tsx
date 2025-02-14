@@ -97,7 +97,7 @@ export function Navbar() {
             owner: nft.owner || null,
             owner_address: address,
             price: nft.price || null,
-            floor_price,
+            floor_price: floor_price || null,
             blockchain: "ethereum",
           };
         })
