@@ -284,7 +284,7 @@ export function Navbar() {
             </div>
 
             {/* Mobile Navigation Links */}
-            <div className="space-y-4">
+            <div className="flex flex-col space-y-2">
               <Link
                 href="/trade"
                 className="text-sm transition-colors hover:text-[#00E0B9]"
