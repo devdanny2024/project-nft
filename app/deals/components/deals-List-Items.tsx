@@ -3,8 +3,6 @@ import { ArrowRightLeft } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 import { useEnsAvatar, useEnsName } from "wagmi";
-import axios from "axios";
-import { useEffect, useState } from "react";
 
 interface TransferEvent {
   from: `0x${string}`;
@@ -13,6 +11,7 @@ interface TransferEvent {
   blockTimestamp: string;
   transactionHash: `0x${string}`;
   contractAddress: `0x${string}`;
+  image: string | null;
 }
 
 interface DealsListItemsProps {
@@ -41,46 +40,19 @@ const DealsListItems = ({ transfer }: DealsListItemsProps) => {
     name: receiver.data as string,
   });
 
-  const [metadata, setMetadata] = useState("/collections/collectionItem.jpg");
-
-  const API_KEY = "V4QidqQN3CnapxngEQGMGFl0ZEkS72Bg";
-
-  const options = {
-    method: "GET",
-    url: `https://eth-mainnet.g.alchemy.com/nft/v3/${API_KEY}/getNFTMetadata`,
-    params: {
-      contractAddress: transfer.contractAddress,
-      tokenId: transfer.tokenId,
-      refreshCache: "false",
-    },
-    headers: { accept: "application/json" },
-  };
-
-  useEffect(() => {
-    const fetch = async () => {
-      const { data } = await axios.request(options);
-      // console.log(
-      //   data.image.cachedUrl,
-      //   data.image.originalUrl,
-      //   data.image.thumbnailUrl
-      // );
-      setMetadata(data.image.originalUrl);
-    };
-    fetch();
-  }, []);
-
   return (
     <div className="border p-4 rounded-lg ">
       <div className="flex flex-col md:flex-row items-center gap-3 text-xs">
         <div className="flex items-center gap-2">
           <div className="">
             <div className="h-8 w-8 rounded-full overflow-hidden">
-              <Image
+              <img
                 src={senderAvatar.data || "/collections/c5.jpg"}
                 alt={"akt"}
                 width={40}
                 height={40}
                 className="object-cover"
+                onError={(e) => (e.currentTarget.src = "/collections/c5.jpg")}
               />
             </div>
           </div>
@@ -89,12 +61,13 @@ const DealsListItems = ({ transfer }: DealsListItemsProps) => {
           </div>
           <div className="">
             <div className="h-8 w-8 rounded-full overflow-hidden">
-              <Image
+              <img
                 src={senderAvatar.data || "/collections/c5.jpg"}
                 alt={"akt"}
                 width={40}
                 height={40}
                 className="object-cover"
+                onError={(e) => (e.currentTarget.src = "/collections/c5.jpg")}
               />
             </div>
           </div>
@@ -117,12 +90,13 @@ const DealsListItems = ({ transfer }: DealsListItemsProps) => {
         <div className=" md:flex items-center gap-2">
           <div className="flex items-center gap-2">
             <div className="h-10 w-10 rounded-full overflow-hidden">
-              <Image
+              <img
                 src={senderAvatar.data || "/collections/c5.jpg"}
                 alt={"akt"}
                 width={40}
                 height={40}
                 className="object-cover"
+                onError={(e) => (e.currentTarget.src = "/collections/c5.jpg")}
               />
             </div>
             <div className="text-sm ">
@@ -139,12 +113,13 @@ const DealsListItems = ({ transfer }: DealsListItemsProps) => {
 
           <div className="flex items-center gap-2">
             <div className="h-10 w-10 rounded-full overflow-hidden">
-              <Image
+              <img
                 src={receiverAvatar.data || "/collections/c6.jpg"}
                 alt={"akt"}
                 width={40}
                 height={40}
                 className="object-cover"
+                onError={(e) => (e.currentTarget.src = "/collections/c6.jpg")}
               />
             </div>
             <div className="text-sm ">
@@ -161,12 +136,15 @@ const DealsListItems = ({ transfer }: DealsListItemsProps) => {
         {/* <ArrowRightLeft /> */}
         <div className="flex items-center gap-4">
           <div className="h-12 w-12 rounded-lg overflow-hidden relative">
-            <Image
-              src={metadata}
+            <img
+              src={transfer.image || "/collections/collectionItem.jpg"}
               alt={"akt"}
-              fill
+              // fill
               sizes=""
               className="object-cover"
+              onError={(e) =>
+                (e.currentTarget.src = "/collections/collectionItem.jpg")
+              }
             />
             {/*sender nft image*/}
           </div>

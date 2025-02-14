@@ -27,6 +27,7 @@ const buttonVariants = cva(
         sm: "h-9 rounded-md px-3",
         lg: "h-11 rounded-md px-8",
         icon: "h-10 w-10",
+        mobile: "h-8 px-2 text-xs", 
       },
     },
     defaultVariants: {
@@ -48,7 +49,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const Comp = asChild ? Slot : "button";
     return (
       <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
+        className={cn(
+          buttonVariants({ variant, size, className }),
+          "md:h-10 md:px-4 md:text-sm sm:h-8 sm:px-2 sm:text-xs"
+        )}
         ref={ref}
         {...props}
       />
@@ -88,7 +92,7 @@ export const CustomConnectButton: React.FC<ConnectButtonProps> = ({
                 return (
                   <Button
                     variant="ghost"
-                    size="icon"
+                    size="mobile"
                     onClick={openConnectModal}
                     className={cn(
                       "relative transition-colors before:absolute before:inset-0 before:-z-10 before:rounded-full before:p-[1px] before:bg-gradient-to-bl before:from-[#614BC3] before:via-[#C8FFE0] before:to-[#33BBC5]",
@@ -105,7 +109,7 @@ export const CustomConnectButton: React.FC<ConnectButtonProps> = ({
                           : "bg-white/10 dark:bg-[#0D0D0D]/50"
                       )}
                     >
-                      <WalletMinimal className="h-5 w-5 text-[#000] dark:text-white" />
+                      <WalletMinimal className="h-4 w-4 text-[#000] dark:text-white" />
                     </div>
                   </Button>
                 );
@@ -115,7 +119,7 @@ export const CustomConnectButton: React.FC<ConnectButtonProps> = ({
                   <Button
                     onClick={openChainModal}
                     variant="ghost"
-                    size="icon"
+                    size="mobile"
                     className={cn(
                       "relative transition-colors before:absolute before:inset-0 before:-z-10 before:rounded-full before:p-[1px] before:bg-gradient-to-bl before:from-[#614BC3] before:via-[#C8FFE0] before:to-[#33BBC5]",
                       scrolled || !isLandingPage
@@ -131,62 +135,19 @@ export const CustomConnectButton: React.FC<ConnectButtonProps> = ({
                           : "bg-white/10 dark:bg-[#0D0D0D]/50"
                       )}
                     >
-                      <X className="h-5 w-5 text-red-600" />
+                      <X className="h-4 w-4 text-red-600" />
                     </div>
                   </Button>
                 );
               }
               return (
-                <div style={{ display: "flex", gap: 12 }}>
-                  <Button
-                    variant="ghost"
-                    onClick={openChainModal}
-                    className={cn(
-                      "relative flex transition-colors before:absolute before:inset-0 before:-z-10 before:rounded-sm before:p-[1px] before:bg-gradient-to-bl before:from-[#614BC3] before:via-[#C8FFE0] before:to-[#33BBC5]"
-                      //   scrolled || !isLandingPage
-                      //     ? "text-foreground hover:bg-transparent"
-                      //     : "text-white hover:bg-transparent"
-                    )}
-                  >
-                    {chain.hasIcon && (
-                      <div
-                        style={{
-                          background: chain.iconBackground,
-                          width: 12,
-                          height: 12,
-                          borderRadius: 999,
-                          overflow: "hidden",
-                          marginRight: 4,
-                        }}
-                      >
-                        {chain.iconUrl && (
-                          <img
-                            alt={chain.name ?? "Chain icon"}
-                            src={chain.iconUrl}
-                            style={{ width: 12, height: 12 }}
-                          />
-                        )}
-                      </div>
-                    )}
+                <div style={{ display: "flex", gap: 8 }}>
+                  <Button variant="ghost" onClick={openChainModal} size="mobile">
                     {chain.name}
-                    <ChevronDown className="text-sm" />
-                    {/* Reduce size of ChevronDown */}
+                    <ChevronDown className="h-3 w-3" />
                   </Button>
-                  <Button
-                    variant="ghost"
-                    onClick={openAccountModal}
-                    className={cn(
-                      "relative transition-colors before:absolute before:inset-0 before:-z-10 before:rounded-sm before:p-[1px] before:bg-gradient-to-bl before:from-[#614BC3] before:via-[#C8FFE0] before:to-[#33BBC5]"
-                      //   scrolled || !isLandingPage
-                      //     ? "text-foreground hover:bg-transparent"
-                      //     : "text-white hover:bg-transparent"
-                    )}
-                  >
-                    {/* {account.ensAvatar} */}
+                  <Button variant="ghost" onClick={openAccountModal} size="mobile">
                     {account.displayName}
-                    {/* {account.displayBalance
-                      ? ` (${account.displayBalance})`
-                      : ""} */}
                   </Button>
                 </div>
               );

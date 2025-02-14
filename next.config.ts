@@ -1,24 +1,34 @@
 import type { NextConfig } from "next";
 
+const allowedDomains = [
+  "euc.li",
+  "ens.xyz",
+  "nft-cdn.alchemy.com",
+  "i.imgur.com",
+  "i.seadn.io", // OpenSea images
+  "ipfs.io", // IPFS gateway
+  "cloudflare-ipfs.com", // IPFS via Cloudflare
+  "gateway.pinata.cloud", // Pinata IPFS
+  "arweave.net", // Arweave storage
+  "nftstorage.link", // NFT.Storage
+  "rarible.com", // Rarible NFT marketplace
+  "looksrare.org", // LooksRare NFT marketplace
+  "zora.co", // Zora marketplace
+  "foundation.app", // Foundation marketplace
+  "superrare.com", // SuperRare marketplace
+  "manifold.xyz", // Manifold NFT platform
+  "mintbase.io", // Mintbase NFT marketplace
+  "async.art", // Async Art platform
+  "data.syou-nft.com",
+];
+
 const nextConfig: NextConfig = {
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "euc.li",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
-        hostname: "ens.xyz",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
-        hostname: "*",
-        pathname: "/**",
-      },
-    ],
+    remotePatterns: allowedDomains.map((domain) => ({
+      protocol: "https",
+      hostname: domain,
+      pathname: "/**",
+    })),
   },
 };
 

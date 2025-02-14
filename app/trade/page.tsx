@@ -14,7 +14,7 @@ const page = () => {
           <TradeData />
         </div>
       </div>
-       <Footer />
+      <Footer />
     </div>
   );
 };

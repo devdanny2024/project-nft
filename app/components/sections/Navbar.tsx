@@ -33,7 +33,7 @@ interface NFTData {
   owner: string;
   owner_address: string;
   price: string | null;
-  floor_price: number | null;
+  floor_price: { [marketplace: string]: number }[] | null;
   blockchain: "ethereum" | "solana";
 }
 
@@ -45,29 +45,63 @@ export function Navbar() {
   const isLandingPage = pathname === "/";
   const [isOpen, setIsOpen] = useState(false);
 
+  const fetchPrice = async (
+    address: string
+  ): Promise<{ [marketplace: string]: number }[]> => {
+    const options = {
+      method: "GET",
+      url: `https://eth-mainnet.g.alchemy.com/nft/v3/${API_KEY}/getFloorPrice`,
+      params: {
+        contractAddress: address,
+      },
+      headers: { accept: "application/json" },
+    };
+
+    try {
+      const { data } = await axios.request(options);
+      const prices: { [marketplace: string]: number }[] = Object.entries(
+        data as Record<string, { floorPrice?: number }>
+      )
+        .filter(([_, value]) => value.floorPrice != undefined)
+        .map(([marketplace, value]) => ({
+          [marketplace.toLowerCase()]: value.floorPrice as number,
+        }));
+      return prices.length ? prices : [];
+    } catch (error) {
+      console.error("Error: ", error);
+    }
+    return [];
+  };
+
   const fetchEthereumNFTs = async (address: string): Promise<NFTData[]> => {
     const fetchUrl = `${ETH_BASE_URL}/getNFTs/?owner=${address}`;
 
     try {
       const { data } = await axios.get(fetchUrl);
+      // console.log(data);
 
       if (!data.ownedNfts || !data.ownedNfts.length) {
         console.warn("No NFTs on ETH chain found for this address.");
         return [];
       }
 
-      return data.ownedNfts.map((nft: any) => ({
-        
-        name: nft.metadata?.name || "Unknown",
-        token_type: nft.id.tokenMetadata?.tokenType || "Unknown",
-        token_id: nft.id.tokenId,
-        address: nft.contract.address,
-        image: nft.metadata?.image || null,
-        owner: nft.owner || null,
-        owner_address: address,
-        price: nft.price || null,
-        blockchain: "ethereum",
-      }));
+      return Promise.all(
+        data.ownedNfts.map(async (nft: any) => {
+          const floor_price = await fetchPrice(nft.contract.address);
+          return {
+            name: nft.metadata?.name || "Unknown",
+            token_type: nft.id.tokenMetadata?.tokenType || "Unknown",
+            token_id: nft.id.tokenId,
+            address: nft.contract.address,
+            image: nft.metadata?.image || null,
+            owner: nft.owner || null,
+            owner_address: address,
+            price: nft.price || null,
+            floor_price: floor_price || null,
+            blockchain: "ethereum",
+          };
+        })
+      );
     } catch (error) {
       console.error("Error fetching Ethereum NFTs:", error);
       return [];
@@ -135,8 +169,6 @@ export function Navbar() {
 
   useEffect(() => {
     if (isConnected && address) {
-      // console.log(address);
-
       const fetchData = async () => {
         try {
           await fetchNFTs();
@@ -168,19 +200,22 @@ export function Navbar() {
             </div>
             <div className="flex flex-1 items-center gap-8 justify-center">
               <div className="flex items-center gap-4">
-              <Link href="/trade" className="text-sm transition-colors hover:text-[#00E0B9]">
+                <Link
+                  href="/trade"
+                  className="text-sm transition-colors hover:text-[#00E0B9]"
+                >
                   Trades
                 </Link>
-                <Link href="/deals" className="text-sm transition-colors hover:text-[#00E0B9]">
+                <Link
+                  href="/deals"
+                  className="text-sm transition-colors hover:text-[#00E0B9]"
+                >
                   Deals
                 </Link>
               </div>
-              <div className="flex-1 max-w-xl">
-              
-              </div>
+              <div className="flex-1 max-w-xl"></div>
             </div>
             <div className="flex items-center gap-4">
-          
               <CustomConnectButton
                 isLandingPage={isLandingPage}
                 scrolled={scrolled}
@@ -249,12 +284,18 @@ export function Navbar() {
             </div>
 
             {/* Mobile Navigation Links */}
-            <div className="space-y-4">
-            <Link href="/trade" className="text-sm transition-colors hover:text-[#00E0B9]">
-                  Trades
-                </Link>
-              <Link href="/deals" className="text-sm transition-colors hover:text-[#00E0B9]">
-                  Deals
+            <div className="flex flex-col space-y-2">
+              <Link
+                href="/trade"
+                className="text-sm transition-colors hover:text-[#00E0B9]"
+              >
+                Trades
+              </Link>
+              <Link
+                href="/deals"
+                className="text-sm transition-colors hover:text-[#00E0B9]"
+              >
+                Deals
               </Link>
             </div>
 
