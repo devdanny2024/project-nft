@@ -54,7 +54,7 @@ export function NFTLoan() {
         {/* Stats Card */}
         <div className="relative max-w-4xl mx-auto mb-16">
           <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-blue-500/20 blur-3xl" />
-          <div className="relative bg-black/40 backdrop-blur-xl rounded-3xl p-8 grid grid-cols-4 gap-8 text-white">
+          <div className="relative bg-black/40 backdrop-blur-xl rounded-3xl p-8 grid grid-cols-2 md:grid-cols-4 gap-8 text-white">
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
                 <p className="text-base mb-2">{stat.label}</p>
