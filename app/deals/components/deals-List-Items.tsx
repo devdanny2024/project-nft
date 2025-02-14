@@ -46,12 +46,13 @@ const DealsListItems = ({ transfer }: DealsListItemsProps) => {
         <div className="flex items-center gap-2">
           <div className="">
             <div className="h-8 w-8 rounded-full overflow-hidden">
-              <Image
+              <img
                 src={senderAvatar.data || "/collections/c5.jpg"}
                 alt={"akt"}
                 width={40}
                 height={40}
                 className="object-cover"
+                onError={(e) => (e.currentTarget.src = "/collections/c5.jpg")}
               />
             </div>
           </div>
@@ -60,12 +61,13 @@ const DealsListItems = ({ transfer }: DealsListItemsProps) => {
           </div>
           <div className="">
             <div className="h-8 w-8 rounded-full overflow-hidden">
-              <Image
+              <img
                 src={senderAvatar.data || "/collections/c5.jpg"}
                 alt={"akt"}
                 width={40}
                 height={40}
                 className="object-cover"
+                onError={(e) => (e.currentTarget.src = "/collections/c5.jpg")}
               />
             </div>
           </div>
@@ -88,12 +90,13 @@ const DealsListItems = ({ transfer }: DealsListItemsProps) => {
         <div className=" md:flex items-center gap-2">
           <div className="flex items-center gap-2">
             <div className="h-10 w-10 rounded-full overflow-hidden">
-              <Image
+              <img
                 src={senderAvatar.data || "/collections/c5.jpg"}
                 alt={"akt"}
                 width={40}
                 height={40}
                 className="object-cover"
+                onError={(e) => (e.currentTarget.src = "/collections/c5.jpg")}
               />
             </div>
             <div className="text-sm ">
@@ -110,12 +113,13 @@ const DealsListItems = ({ transfer }: DealsListItemsProps) => {
 
           <div className="flex items-center gap-2">
             <div className="h-10 w-10 rounded-full overflow-hidden">
-              <Image
+              <img
                 src={receiverAvatar.data || "/collections/c6.jpg"}
                 alt={"akt"}
                 width={40}
                 height={40}
                 className="object-cover"
+                onError={(e) => (e.currentTarget.src = "/collections/c6.jpg")}
               />
             </div>
             <div className="text-sm ">
