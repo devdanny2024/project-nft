@@ -11,22 +11,22 @@ const TradeSwap = () => {
         <Card className="overflow-hidden rounded-2xl w-56">
           <div className="relative aspect-square">
             <Image
-              src={"/collections/collectionItem.jpg"}
+              src={"/collections/beanz002.png"}
               alt={`ON1 jn`}
               fill
               className="object-cover"
             />
           </div>
           <div className="p-4">
-            <div className="text-sm text-muted-foreground">ON1hbiu</div>
+            <div className="text-sm text-muted-foreground">Bean #1683</div>
             <div className="flex items-center justify-between">
-              <div className="">kbguhlj</div>
+              <div className="">BEANZ Official</div>
               <Badge
                 variant="secondary"
                 className="flex items-center gap-2 text-[#614BC3]"
               >
                 <Gem className="h-3 w-3 " />
-                <div className="">839</div>
+                <div className="">1683</div>
               </Badge>
             </div>
           </div>
@@ -34,22 +34,22 @@ const TradeSwap = () => {
         <Card className="overflow-hidden rounded-2xl w-56">
           <div className="relative aspect-square">
             <Image
-              src={"/collections/collectionItem.jpg"}
+              src={"/collections/beanz001.png"}
               alt={`ON1 jn`}
               fill
               className="object-cover"
             />
           </div>
           <div className="p-4">
-            <div className="text-sm text-muted-foreground">ON1hbiu</div>
+            <div className="text-sm text-muted-foreground">Bean #200</div>
             <div className="flex items-center justify-between">
-              <div className="">kbguhlj</div>
+              <div className="">BEANZ Official</div>
               <Badge
                 variant="secondary"
                 className="flex items-center gap-2 text-[#614BC3]"
               >
                 <Gem className="h-3 w-3 " />
-                <div className="">839</div>
+                <div className="">200</div>
               </Badge>
             </div>
           </div>
@@ -60,22 +60,22 @@ const TradeSwap = () => {
         <Card className="overflow-hidden rounded-2xl w-56">
           <div className="relative aspect-square">
             <Image
-              src={"/collections/collectionItem.jpg"}
+              src={"/collections/eth.png"}
               alt={`ON1 jn`}
               fill
               className="object-cover"
             />
           </div>
           <div className="p-4">
-            <div className="text-sm text-muted-foreground">ON1hbiu</div>
+            <div className="text-sm text-muted-foreground">1.2eth</div>
             <div className="flex items-center justify-between">
-              <div className="">kbguhlj</div>
+              <div className="">Ethereum Chain</div>
               <Badge
                 variant="secondary"
                 className="flex items-center gap-2 text-[#614BC3]"
               >
                 <Gem className="h-3 w-3 " />
-                <div className="">839</div>
+                <div className=""></div>
               </Badge>
             </div>
           </div>

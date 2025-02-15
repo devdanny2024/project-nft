@@ -11,7 +11,15 @@ const page = () => {
         <div className="mt-20">
           <TradeTitle />
           <TradeSwap />
-          <TradeData />
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+
         </div>
       </div>
       <Footer />
