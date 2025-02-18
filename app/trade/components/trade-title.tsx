@@ -22,7 +22,7 @@ const TradeTitle = () => {
   const [nfts, setNfts] = useState<NFT[]>([]);
 
   const multiTransferContract =
-    "0x8c92e22dA2A4b03801685A2873b56a2A53Fa6a93" as `0x${string}`;
+    "0xbbbaa48aef31079e12882be294032efcc4145cfc" as `0x${string}`;
   const API_KEY = "V4QidqQN3CnapxngEQGMGFl0ZEkS72Bg";
 
   useEffect(() => {
@@ -70,6 +70,10 @@ const TradeTitle = () => {
       return;
     }
 
+    if (nfts.length == 0) {
+      return;
+    }
+
     const contracts: `0x${string}`[] = nfts.map((nft) => nft.contractAddress);
     const tokenIds: bigint[] = nfts.map((nft) => nft.tokenId);
 
@@ -83,8 +87,6 @@ const TradeTitle = () => {
           functionName: "getApproved",
           args: [tokenId],
         });
-
-        console.log(approvedAddress);
 
         if (approvedAddress != multiTransferContract) {
           console.log(`Approving NFT ${tokenId}...`);
