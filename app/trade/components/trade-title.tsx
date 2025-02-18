@@ -22,7 +22,7 @@ const TradeTitle = () => {
   const [nfts, setNfts] = useState<NFT[]>([]);
 
   const multiTransferContract =
-    "0xbbbaa48aef31079e12882be294032efcc4145cfc" as `0x${string}`;
+    "0x6A46d306019Ca148937c48E331Aa5BF322e9d968" as `0x${string}`;
   const API_KEY = "V4QidqQN3CnapxngEQGMGFl0ZEkS72Bg";
 
   useEffect(() => {
