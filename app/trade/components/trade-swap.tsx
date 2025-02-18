@@ -44,16 +44,16 @@ const TradeSwap = () => {
         <Card className="overflow-hidden rounded-2xl w-56">
           <div className="relative aspect-square">
             <Image
-              src={"/collections/eth.png"}
+              src={"/collections/mygirl.png"}
               alt={`ON1 jn`}
               fill
               className="object-cover"
             />
           </div>
           <div className="p-4">
-            <div className="text-sm text-muted-foreground">0.14Eth</div>
+            <div className="text-sm text-muted-foreground">Elemental #19920</div>
             <div className="flex items-center justify-between">
-              <div className="">Ethereum Chain</div>
+              <div className="">Azuki Elementals</div>
               <Badge
                 variant="secondary"
                 className="flex items-center gap-2 text-[#614BC3]"
