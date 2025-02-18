@@ -15,4 +15,5 @@ export const addresses = [
   "0xd098c59d5d4a1ac3909f6093d0cf565314ecd240",
   "0x12dd66366d45f44128083233c6fbadfe7cbae221",
   "0xcb0477d1af5b8b05795d89d59f4667b59eae9244",
+  "0x466cfcd0525189b573e794f554b8a751279213ac",
 ] as const satisfies `0x${string}`[];
