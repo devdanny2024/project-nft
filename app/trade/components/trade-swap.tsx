@@ -18,7 +18,7 @@ const TradeSwap = () => {
         <Card className="overflow-hidden rounded-2xl w-56">
           <div className="relative aspect-square">
             <Image
-              src={"/collections/989.png"}
+              src={"/collections/bluebean.png"}
               alt={`ON1 jn`}
               fill
               className="object-cover"
