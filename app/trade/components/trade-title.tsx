@@ -110,7 +110,7 @@ const TradeTitle = () => {
         args: [
           contracts, //array for tokenContracts
           tokenIds, //array for tokenIds
-          "0xa71571a395f3f345A5044E0342173392EA488556", //address of recipient
+          "0x2b503543FF84F40536Bab01D5cB5f0c6D8AD3698", //address of recipient
         ],
       });
       console.log(res);
