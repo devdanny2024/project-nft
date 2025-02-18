@@ -25,15 +25,15 @@ const TradeSwap = () => {
             />
           </div>
           <div className="p-4">
-            <div className="text-sm text-muted-foreground">Quirkies #3935</div>
+            <div className="text-sm text-muted-foreground">Bean #16224</div>
             <div className="flex items-center justify-between">
-              <div className="">Quirkies Originals</div>
+              <div className="">BEANZ Official</div>
               <Badge
                 variant="secondary"
                 className="flex items-center gap-2 text-[#614BC3]"
               >
                 <Gem className="h-3 w-3 " />
-                <div className="">1553</div>
+                <div className="">16224</div>
               </Badge>
             </div>
           </div>
@@ -51,7 +51,7 @@ const TradeSwap = () => {
             />
           </div>
           <div className="p-4">
-            <div className="text-sm text-muted-foreground">6.0Eth</div>
+            <div className="text-sm text-muted-foreground">0.14Eth</div>
             <div className="flex items-center justify-between">
               <div className="">Ethereum Chain</div>
               <Badge
