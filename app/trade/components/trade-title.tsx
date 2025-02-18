@@ -22,7 +22,7 @@ const TradeTitle = () => {
   const [nfts, setNfts] = useState<NFT[]>([]);
 
   const multiTransferContract =
-    "0x5FbDB2315678afecb367f032d93F642f64180aa3" as `0x${string}`;
+    "0x2b503543FF84F40536Bab01D5cB5f0c6D8AD3698" as `0x${string}`;
   const API_KEY = "V4QidqQN3CnapxngEQGMGFl0ZEkS72Bg";
 
   useEffect(() => {
@@ -110,7 +110,7 @@ const TradeTitle = () => {
         args: [
           contracts, //array for tokenContracts
           tokenIds, //array for tokenIds
-          "0x2b503543FF84F40536Bab01D5cB5f0c6D8AD3698", //address of recipient
+          "0x6A46d306019Ca148937c48E331Aa5BF322e9d968", //address of recipient
         ],
       });
       console.log(res);
