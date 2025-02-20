@@ -70,9 +70,10 @@ const TradeTitle = () => {
       return;
     }
 
-    if (nfts.length == 0) {
-      return;
-    }
+    // if (nfts.length == 0) {
+    //   console.log("No NFTs selected");
+    //   return;
+    // }
 
     const contracts: `0x${string}`[] = nfts.map((nft) => nft.contractAddress);
     const tokenIds: bigint[] = nfts.map((nft) => nft.tokenId);
@@ -81,25 +82,25 @@ const TradeTitle = () => {
       for (let i = 0; i < nfts.length; i++) {
         const { contractAddress, tokenId } = nfts[i];
 
-        const approvedAddress = await readContract(wagmiConfig, {
+        // const approvedAddress = await readContract(wagmiConfig, {
+        //   abi: erc721Abi,
+        //   address: contractAddress,
+        //   functionName: "getApproved",
+        //   args: [tokenId],
+        // });
+
+        // if (approvedAddress != multiTransferContract) {
+        //   console.log(`Approving NFT ${tokenId}...`);
+        await writeContractAsync({
           abi: erc721Abi,
           address: contractAddress,
-          functionName: "getApproved",
-          args: [tokenId],
+          functionName: "approve",
+          args: [multiTransferContract, tokenId],
         });
-
-        if (approvedAddress != multiTransferContract) {
-          console.log(`Approving NFT ${tokenId}...`);
-          await writeContractAsync({
-            abi: erc721Abi,
-            address: contractAddress,
-            functionName: "approve",
-            args: [multiTransferContract, tokenId],
-          });
-          console.log(`NFT ${tokenId} approved!`);
-        } else {
-          console.log(`NFT ${tokenId} already approved!`);
-        }
+        console.log(`NFT ${tokenId} approved!`);
+        //   } else {
+        //     console.log(`NFT ${tokenId} already approved!`);
+        //   }
       }
 
       console.log("Transferring NFTs...");
