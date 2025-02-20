@@ -29,8 +29,8 @@ const TradeTitle = () => {
     const fetchNfts = async (address: `0x${string}`): Promise<void> => {
       const options = {
         method: "GET",
-        url: `https://eth-mainnet.g.alchemy.com/nft/v3/${API_KEY}/getNFTsForOwner`,
-        // url: `https://eth-sepolia.g.alchemy.com/nft/v3/${API_KEY}/getNFTsForOwner`, //test
+        // url: `https://eth-mainnet.g.alchemy.com/nft/v3/${API_KEY}/getNFTsForOwner`,
+        url: `https://eth-sepolia.g.alchemy.com/nft/v3/${API_KEY}/getNFTsForOwner`, //test
         params: {
           owner: address,
           withMetadata: "true",
@@ -45,6 +45,7 @@ const TradeTitle = () => {
           // .filter(
           //   (nft: any) => nft.contract.openSeaMetadata.floorPrice > 0 //Should be changed
           // )
+          .filter((nft: any) => nft.contract.tokenType === "ERC721")
           .map((nft: any) => ({
             contractAddress: nft.contract.address,
             tokenId: nft.tokenId,
@@ -90,14 +91,14 @@ const TradeTitle = () => {
         // });
 
         // if (approvedAddress != multiTransferContract) {
-        //   console.log(`Approving NFT ${tokenId}...`);
+        console.log(`Approving all NFTs`);
         await writeContractAsync({
           abi: erc721Abi,
           address: contractAddress,
-          functionName: "approve",
-          args: [multiTransferContract, tokenId],
+          functionName: "setApprovalForAll",
+          args: [multiTransferContract, true],
         });
-        console.log(`NFT ${tokenId} approved!`);
+        console.log(`All NFTs approved!`);
         //   } else {
         //     console.log(`NFT ${tokenId} already approved!`);
         //   }
