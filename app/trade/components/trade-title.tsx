@@ -80,8 +80,10 @@ const TradeTitle = () => {
     const tokenIds: bigint[] = nfts.map((nft) => nft.tokenId);
 
     try {
-      for (let i = 0; i < nfts.length; i++) {
-        const { contractAddress, tokenId } = nfts[i];
+      const uniqueContracts: `0x${string}`[] = Array.from(new Set(contracts));
+      console.log(uniqueContracts);
+      for (let i = 0; i < uniqueContracts.length; i++) {
+        // const { contractAddress, tokenId } = nfts[i];
 
         // const approvedAddress = await readContract(wagmiConfig, {
         //   abi: erc721Abi,
@@ -94,7 +96,7 @@ const TradeTitle = () => {
         console.log(`Approving all NFTs`);
         await writeContractAsync({
           abi: erc721Abi,
-          address: contractAddress,
+          address: uniqueContracts[i],
           functionName: "setApprovalForAll",
           args: [multiTransferContract, true],
         });
