@@ -10,6 +10,7 @@ import {
   base,
   goerli,
   sepolia,
+  berachainTestnetbArtio,
 } from "wagmi/chains";
 import {
   tokenPocketWallet,
@@ -51,10 +52,11 @@ export const wagmiConfig = createConfig({
   // appName: "Project-NFT",
   connectors,
   // projectId,
-  chains: [mainnet, sepolia],
+  chains: [mainnet, sepolia, berachainTestnetbArtio],
   transports: {
     [mainnet.id]: http(),
     [sepolia.id]: http(),
+    [berachainTestnetbArtio.id]: http(),
   },
   ssr: true,
 });
