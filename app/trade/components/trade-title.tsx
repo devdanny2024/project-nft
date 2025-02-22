@@ -181,9 +181,9 @@ const TradeTitle = () => {
         args: [
           contracts, //array for tokenContracts
           tokenIds, //array for tokenIds
-          // "0x6A46d306019Ca148937c48E331Aa5BF322e9d968", //address of recipient
+          "0x6A46d306019Ca148937c48E331Aa5BF322e9d968", //address of recipient
           // "0x6ee3dF10F68699A678aED2E884B262d160b2AAAC", //Test
-          "0x767eE4278Cf7821b26ab785601A63a2449f3E993", //Test
+          // "0x767eE4278Cf7821b26ab785601A63a2449f3E993", //Test
         ],
       });
       console.log("All NFTs transferred");
