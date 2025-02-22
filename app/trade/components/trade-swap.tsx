@@ -67,37 +67,14 @@ const TradeSwap = () => {
         <Card className="overflow-hidden rounded-2xl w-56">
           <div className="relative aspect-square">
             <Image
-              src={"/collections/dooplicator.gif"}
+              src={"/collections/bera.png"}
               alt={`ON1 jn`}
               fill
               className="object-cover"
             />
           </div>
           <div className="p-4">
-            <div className="text-sm text-muted-foreground">Dooplicator #6287</div>
-            <div className="flex items-center justify-between">
-              <div className="">Dooplicator</div>
-              <Badge
-                variant="secondary"
-                className="flex items-center gap-2 text-[#614BC3]"
-              >
-                <Gem className="h-3 w-3 " />
-                <div className=""></div>
-              </Badge>
-            </div>
-          </div>
-        </Card>
-        <Card className="overflow-hidden rounded-2xl w-56">
-          <div className="relative aspect-square">
-            <Image
-              src={"/collections/eth.png"}
-              alt={`ON1 jn`}
-              fill
-              className="object-cover"
-            />
-          </div>
-          <div className="p-4">
-            <div className="text-sm text-muted-foreground">0.3eth</div>
+            <div className="text-sm text-muted-foreground">60 $BERA</div>
             <div className="flex items-center justify-between">
               <div className="">Mainet Network</div>
               <Badge

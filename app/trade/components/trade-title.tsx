@@ -86,7 +86,7 @@ const TradeTitle = () => {
           withMetadata: "true",
           pageSize: "100",
         },
-        headers: { accept: "application/json" },
+        headers: { accept: "application/json"},
       };
 
       try {
