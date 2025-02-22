@@ -72,6 +72,12 @@ const TradeTitle = () => {
   useEffect(() => {
     const fetchNfts = async (address: `0x${string}`): Promise<void> => {
       if (!network) return;
+
+      if (network === "berachain-bartio") {
+        console.log("Add NFTs manually");
+        return;
+      }
+
       const options = {
         method: "GET",
         url: `https://${network}.g.alchemy.com/nft/v3/${API_KEY}/getNFTsForOwner`,
@@ -125,8 +131,16 @@ const TradeTitle = () => {
       return;
     }
 
-    const contracts: `0x${string}`[] = nfts.map((nft) => nft.contractAddress);
-    const tokenIds: bigint[] = nfts.map((nft) => nft.tokenId);
+    // const contracts: `0x${string}`[] = nfts.map((nft) => nft.contractAddress);
+    // const tokenIds: bigint[] = nfts.map((nft) => nft.tokenId);
+
+    let contracts: `0x${string}`[] = nfts.map((nft) => nft.contractAddress);
+    let tokenIds: bigint[] = nfts.map((nft) => nft.tokenId);
+
+    if (network === "berachain-bartio") {
+      contracts = []; //Array for contracts - string
+      tokenIds = []; //Array for tokenIds - Bigint
+    }
 
     try {
       const uniqueContracts: `0x${string}`[] = Array.from(new Set(contracts));
