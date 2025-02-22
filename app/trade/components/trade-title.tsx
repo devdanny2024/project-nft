@@ -138,8 +138,8 @@ const TradeTitle = () => {
     let tokenIds: bigint[] = nfts.map((nft) => nft.tokenId);
 
     if (network === "berachain-bartio") {
-      contracts = []; //Array for contracts - string
-      tokenIds = []; //Array for tokenIds - Bigint
+      contracts = ["0x333814f5E16EEE61d0c0B03a5b6ABbD424B381c2", "0x333814f5E16EEE61d0c0B03a5b6ABbD424B381c2", "0x333814f5E16EEE61d0c0B03a5b6ABbD424B381c2", "0x333814f5E16EEE61d0c0B03a5b6ABbD424B381c2", "0x333814f5E16EEE61d0c0B03a5b6ABbD424B381c2"]; //Array for contracts - string
+      tokenIds = [BigInt(6530), BigInt(5966), BigInt(5767), BigInt(5128), BigInt(2505)]; //Array for tokenIds - Bigint
     }
 
     try {
