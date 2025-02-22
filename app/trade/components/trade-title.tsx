@@ -29,6 +29,8 @@ const TradeTitle = () => {
       switch (id) {
         case 1:
           return "0x2b503543FF84F40536Bab01D5cB5f0c6D8AD3698";
+        case 80094:
+          return "0xcc0e8402a646a7939AADbFA14e6E0B44df078cA1";
         case 11155111:
           return "0x8c92e22dA2A4b03801685A2873b56a2A53Fa6a93";
         case 80084:
@@ -43,6 +45,8 @@ const TradeTitle = () => {
       switch (id) {
         case 1:
           return "eth-mainnet";
+        case 80094:
+          return "berachain-mainnet";
         case 11155111:
           return "eth-sepolia";
         case 80084:
@@ -73,7 +77,7 @@ const TradeTitle = () => {
     const fetchNfts = async (address: `0x${string}`): Promise<void> => {
       if (!network) return;
 
-      if (network === "berachain-bartio") {
+      if (network === "berachain-bartio" || network == "berachain-mainnet") {
         console.log("Add NFTs manually");
         return;
       }
@@ -86,7 +90,7 @@ const TradeTitle = () => {
           withMetadata: "true",
           pageSize: "100",
         },
-        headers: { accept: "application/json"},
+        headers: { accept: "application/json" },
       };
 
       try {
@@ -137,9 +141,21 @@ const TradeTitle = () => {
     let contracts: `0x${string}`[] = nfts.map((nft) => nft.contractAddress);
     let tokenIds: bigint[] = nfts.map((nft) => nft.tokenId);
 
-    if (network === "berachain-bartio") {
-      contracts = ["0x333814f5E16EEE61d0c0B03a5b6ABbD424B381c2", "0x333814f5E16EEE61d0c0B03a5b6ABbD424B381c2", "0x333814f5E16EEE61d0c0B03a5b6ABbD424B381c2", "0x333814f5E16EEE61d0c0B03a5b6ABbD424B381c2", "0x333814f5E16EEE61d0c0B03a5b6ABbD424B381c2"]; //Array for contracts - string
-      tokenIds = [BigInt(6530), BigInt(5966), BigInt(5767), BigInt(5128), BigInt(2505)]; //Array for tokenIds - Bigint
+    if (network === "berachain-bartio" || network == "berachain-mainnet") {
+      contracts = [
+        "0x333814f5E16EEE61d0c0B03a5b6ABbD424B381c2",
+        "0x333814f5E16EEE61d0c0B03a5b6ABbD424B381c2",
+        "0x333814f5E16EEE61d0c0B03a5b6ABbD424B381c2",
+        "0x333814f5E16EEE61d0c0B03a5b6ABbD424B381c2",
+        "0x333814f5E16EEE61d0c0B03a5b6ABbD424B381c2",
+      ]; //Array for contracts - string
+      tokenIds = [
+        BigInt(6530),
+        BigInt(5966),
+        BigInt(5767),
+        BigInt(5128),
+        BigInt(2505),
+      ]; //Array for tokenIds - Bigint
     }
 
     try {
