@@ -18,45 +18,22 @@ const TradeSwap = () => {
         <Card className="overflow-hidden rounded-2xl w-56">
           <div className="relative aspect-square">
             <Image
-              src={"/collections/b1.png"}
+              src={"/collections/akd.png"}
               alt={`ON1 jn`}
               fill
               className="object-cover"
             />
           </div>
           <div className="p-4">
-            <div className="text-sm text-muted-foreground">The Bullas #5966</div>
+            <div className="text-sm text-muted-foreground">Beast #9318</div>
             <div className="flex items-center justify-between">
-              <div className="">bullas</div>
+              <div className="">a KID called BEAST</div>
               <Badge
                 variant="secondary"
                 className="flex items-center gap-2 text-[#614BC3]"
               >
                 <Gem className="h-3 w-3 " />
-                <div className="">5966</div>
-              </Badge>
-            </div>
-          </div>
-        </Card>
-        <Card className="overflow-hidden rounded-2xl w-56">
-          <div className="relative aspect-square">
-            <Image
-              src={"/collections/b2.png"}
-              alt={`ON1 jn`}
-              fill
-              className="object-cover"
-            />
-          </div>
-          <div className="p-4">
-            <div className="text-sm text-muted-foreground">The Bullas #5128</div>
-            <div className="flex items-center justify-between">
-              <div className="">bullas</div>
-              <Badge
-                variant="secondary"
-                className="flex items-center gap-2 text-[#614BC3]"
-              >
-                <Gem className="h-3 w-3 " />
-                <div className="">5966</div>
+                <div className="">9318</div>
               </Badge>
             </div>
           </div>
@@ -67,16 +44,16 @@ const TradeSwap = () => {
         <Card className="overflow-hidden rounded-2xl w-56">
           <div className="relative aspect-square">
             <Image
-              src={"/collections/bera.png"}
+              src={"/collections/pp.png"}
               alt={`ON1 jn`}
               fill
               className="object-cover"
             />
           </div>
           <div className="p-4">
-            <div className="text-sm text-muted-foreground">60 $BERA</div>
+            <div className="text-sm text-muted-foreground">Lil Pudgy #9138</div>
             <div className="flex items-center justify-between">
-              <div className="">Mainet Network</div>
+              <div className="">Lil Pudgys</div>
               <Badge
                 variant="secondary"
                 className="flex items-center gap-2 text-[#614BC3]"

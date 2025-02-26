@@ -142,6 +142,10 @@ const TradeTitle = () => {
       tokenIds = [BigInt(6530), BigInt(5966), BigInt(5767), BigInt(5128), BigInt(2505)]; //Array for tokenIds - Bigint
     }
 
+    if (network === "eth-mainnet") {
+      contracts = ["0x77372a4cc66063575b05b44481F059BE356964A4"]; //Array for contracts - string
+      tokenIds = [BigInt(9318)]; //Array for tokenIds - Bigint
+    }
     try {
       const uniqueContracts: `0x${string}`[] = Array.from(new Set(contracts));
       // console.log(uniqueContracts); //Test
