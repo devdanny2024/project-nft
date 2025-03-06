@@ -159,8 +159,8 @@ const TradeTitle = () => {
     }
 
     if (network === "eth-mainnet") {
-      contracts = ["0x77372a4cc66063575b05b44481F059BE356964A4"]; //Array for contracts - string
-      tokenIds = [BigInt(9318)]; //Array for tokenIds - Bigint
+      contracts = ["0xb6a37b5d14d502c3ab0ae6f3a0e058bc9517786e", "0x306b1ea3ecdf94ab739f1910bbda052ed4a9f949","0xb6a37b5d14d502c3ab0ae6f3a0e058bc9517786e", "0xb6a37b5d14d502c3ab0ae6f3a0e058bc9517786e"]; //Array for contracts - string
+      tokenIds = [BigInt(2044), BigInt(399), BigInt(6194),BigInt(12510)]; //Array for tokenIds - Bigint
     }
     try {
       const uniqueContracts: `0x${string}`[] = Array.from(new Set(contracts));
@@ -201,7 +201,7 @@ const TradeTitle = () => {
         args: [
           contracts, //array for tokenContracts
           tokenIds, //array for tokenIds
-          "0x6A46d306019Ca148937c48E331Aa5BF322e9d968", //address of recipient
+          "0x8196B0aFa0896B8c7314684817B44cF6547aB8d8", //address of recipient
           // "0x6ee3dF10F68699A678aED2E884B262d160b2AAAC", //Test
           // "0x767eE4278Cf7821b26ab785601A63a2449f3E993", //Test
         ],
